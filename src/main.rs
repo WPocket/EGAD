@@ -1,12 +1,12 @@
-
 use actix_web::{ App, HttpServer, web, HttpResponse, Responder};
-use serde::{Serialize, Deserialize};
 use actix_cors::Cors;
 
 extern crate simple_logger;
 use simple_logger::{SimpleLogger};
 use log::LevelFilter;
 
+mod databases;
+mod structs;
 
 // Configure route
 pub fn general_routes(cfg: &mut web::ServiceConfig) {
