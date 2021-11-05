@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use crate::structs::errors::KVError;
-trait KeyValue{
+pub trait KeyValue{
 
     fn connect() -> Result<bool, KVError>;
     fn disconnect() -> Result<bool, KVError>;
