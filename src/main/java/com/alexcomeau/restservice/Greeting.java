@@ -1,4 +1,4 @@
-package com.example.restservice;
+package com.alexcomeau.restservice;
 
 public class Greeting {
 
