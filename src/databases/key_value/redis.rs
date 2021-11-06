@@ -4,41 +4,85 @@ use crate::structs::errors::KVError;
 
 use super::key_value::KeyValue;
 
-pub struct Redis{
-    db_url:String,
-    db_ip:String,
-    db_user:String,
-    db_passwd:String,
+pub struct Redis {
+    db_url: String,
+    db_ip: String,
+    db_user: String,
+    db_passwd: String,
 }
 
-impl KeyValue for Redis{
-    fn connect() -> Result<bool, KVError>{Ok(true)}
-    fn disconnect() -> Result<bool, KVError>{Ok(true)}
-    
-    fn ping() -> Result<u64, KVError>{Ok(0)}
+impl KeyValue for Redis {
+    fn connect(self) -> Result<bool, KVError> {
+        Ok(true)
+    }
+    fn disconnect(self) -> Result<bool, KVError> {
+        Ok(true)
+    }
 
-    fn get(key:String) -> Result<String, KVError>{Ok("ok".to_owned())}
+    fn ping(self) -> Result<u64, KVError> {
+        Ok(0)
+    }
 
-    fn set_s(key:String, value:String) -> Result<bool, KVError>{Ok(true)}
-    fn set_u64(key:String, value:u64) -> Result<bool, KVError>{Ok(true)}
+    fn get(self, key: String) -> Result<String, KVError> {
+        Ok("ok".to_owned())
+    }
 
-    fn set_s_ex(key:String, value:String, expire:u64) -> Result<bool, KVError>{Ok(true)}
-    fn set_u64_ex(key:String, value:u64, expire:u64) -> Result<bool, KVError>{Ok(true)}
+    fn set_s(self, key: String, value: String) -> Result<bool, KVError> {
+        Ok(true)
+    }
+    fn set_u64(self, key: String, value: u64) -> Result<bool, KVError> {
+        Ok(true)
+    }
 
+    fn set_s_ex(self, key: String, value: String, expire: u64) -> Result<bool, KVError> {
+        Ok(true)
+    }
+    fn set_u64_ex(self, key: String, value: u64, expire: u64) -> Result<bool, KVError> {
+        Ok(true)
+    }
 
-    fn exists(key:String) ->  Result<bool,KVError>{Ok(true)}
+    fn exists(self, key: String) -> Result<bool, KVError> {
+        Ok(true)
+    }
 
-    fn incr(key:String) -> Result<bool, KVError>{Ok(true)}
-    fn incr_by(key:String, incr:u64) -> Result<bool, KVError>{Ok(true)}
+    fn incr(self, key: String) -> Result<bool, KVError> {
+        Ok(true)
+    }
+    fn incr_by(self, key: String, incr: u64) -> Result<bool, KVError> {
+        Ok(true)
+    }
 
-    fn delete(key:String) -> Result<bool, KVError>{Ok(true)}
+    fn delete(self, key: String) -> Result<bool, KVError> {
+        Ok(true)
+    }
 
-    fn add_mul_s(kv_set:HashMap<String,String>) -> Result<bool, KVError>{Ok(true)}
-    fn add_mul_u64(kv_set:HashMap<String,u64>) -> Result<bool, KVError>{Ok(true)}
+    fn add_mul_s(self, kv_set: HashMap<String, String>) -> Result<bool, KVError> {
+        Ok(true)
+    }
+    fn add_mul_u64(self, kv_set: HashMap<String, u64>) -> Result<bool, KVError> {
+        Ok(true)
+    }
 
-    fn get_mul(keys:Vec<String>) -> Result<HashMap<String,String>, KVError>{Err(KVError::ConnectError)}
-    
-    fn get_type(key:String) -> Result<String, KVError>{Ok("ok".to_owned())}
+    fn get_mul(self, keys: Vec<String>) -> Result<HashMap<String, String>, KVError> {
+        Err(KVError::ConnectError)
+    }
 
-    fn set_ex(key:String, expire:u64) -> Result<bool, KVError>{Ok(true)}
+    fn get_type(self, key: String) -> Result<String, KVError> {
+        Ok("ok".to_owned())
+    }
+
+    fn set_ex(self, key: String, expire: u64) -> Result<bool, KVError> {
+        Ok(true)
+    }
+}
+
+impl Redis {
+    fn new(url: String, ip: String, user: String, passwd: String) -> Redis {
+        return Redis {
+            db_url: url,
+            db_ip: ip,
+            db_user: user,
+            db_passwd: passwd,
+        };
+    }
 }
