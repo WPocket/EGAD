@@ -4,6 +4,10 @@ use crate::structs::errors::KVError;
 
 use super::key_value::KeyValue;
 
+extern crate redis;
+
+use redis::RedisResult;
+
 pub struct Redis {
     db_url: String,
     db_ip: String,
@@ -12,18 +16,18 @@ pub struct Redis {
 }
 
 impl KeyValue for Redis {
-    fn connect(self) -> Result<bool, KVError> {
-        Ok(true)
-    }
-    fn disconnect(self) -> Result<bool, KVError> {
-        Ok(true)
-    }
-
     fn ping(self) -> Result<u64, KVError> {
         Ok(0)
     }
 
     fn get(self, key: String) -> Result<String, KVError> {
+        let client = redis::Client::open(self.db_url).unwrap();
+        let mut con = client.get_connection();
+        if (con.is_err()) {
+            return Err(KVError::ConnectError);
+        }
+        let connect = con.unwrap();
+        let result: RedisResult<String> = redis::cmd("GET").arg(key).query(&connect);
         Ok("ok".to_owned())
     }
 
