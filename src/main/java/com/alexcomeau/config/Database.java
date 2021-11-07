@@ -1,13 +1,22 @@
 package com.alexcomeau.config;
 
 public class Database {
-    private String name;    
-    private String url;
-    private String username;
-    private String password;
-    private String use;
-    private String port;
-    private String supplier;
+    private String name = "";
+    private String url = "";
+    private String username = "";
+    private String password = "";
+    private String use = "";
+    private String port = "";
+    private String supplier = "";
+    private String ip = "";
+
+    public String getIp() {
+        return this.ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
     public String getSupplier() {
         return this.supplier;

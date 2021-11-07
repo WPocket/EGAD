@@ -2,7 +2,6 @@ package com.alexcomeau;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import com.alexcomeau.config.Config;
 import com.alexcomeau.config.ConfigReader;
@@ -23,7 +22,6 @@ public class Main {
         kv = new ArrayList<>();
         relational = new ArrayList<>();
         try{
-            System.out.println(System.getProperty("user.dir"));
             config = ConfigReader.readConfig();
         }catch(Exception e){
             e.printStackTrace();

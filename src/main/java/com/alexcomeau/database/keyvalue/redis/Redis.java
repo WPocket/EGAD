@@ -9,14 +9,11 @@ import com.alexcomeau.database.DatabaseExecption;
 import com.alexcomeau.database.keyvalue.KeyValue;
 
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.exceptions.JedisException;
 
 public class Redis implements KeyValue{
     private Jedis jedis;
-    private Database db;
 
     public Redis(Database db){
-        this.db = db;
         jedis = new Jedis(URI.create(db.getUrl()));
     }
 

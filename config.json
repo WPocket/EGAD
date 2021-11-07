@@ -3,9 +3,11 @@
         {
             "name":"mysql-1",
             "supplier":"MySQL",
-            "url":"${username}:${password}@host_or_host_sublist",
-            "username":"",
-            "password":"",
+            "url":"${username}:${password}@${ip}",
+            "username":"server",
+            "password":"serverpass",
+            "ip":"10.16.40.202",
+            "port":3306,
             "use":"EGAD"
         }
     ],
@@ -13,7 +15,9 @@
         {
             "name":"redis-1",
             "supplier":"redis",
-            "url":"redis://10.16.40.204",
+            "url":"redis://10.16.40.204:${port}",
+            "ip":"10.16.40.202",
+            "port":6379,
             "username":"",
             "password":"",
             "use":""

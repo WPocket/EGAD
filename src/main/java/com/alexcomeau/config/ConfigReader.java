@@ -1,7 +1,6 @@
 package com.alexcomeau.config;
 
 import java.io.File;
-import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -11,6 +10,7 @@ public class ConfigReader {
             ObjectMapper om = new ObjectMapper();
             Config config = om.readValue(new File("config.json"), Config.class);
             testConfig(config);
+            formatUrls(config);
             return config;
         } catch (ConfigException e) {
             throw e;
@@ -42,8 +42,10 @@ public class ConfigReader {
 
     private static Database formatUrl(Database db) {
         String url = db.getUrl();
-        url.replaceFirst("\\${password}", db.getPassword()).replaceFirst("\\${username}", db.getUsername())
-                .replaceFirst("\\${port}", db.getPort());
+        url = url.replaceFirst("\\$\\{password\\}", db.getPassword())
+                .replaceFirst("\\$\\{username\\}", db.getUsername()).replaceFirst("\\$\\{port\\}", db.getPort())
+                .replaceFirst("\\$\\{ip\\}", db.getIp());
+        db.setUrl(url);
         return db;
     }
 
