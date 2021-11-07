@@ -1,4 +1,4 @@
-package com.alexcomeau.restservice;
+package com.alexcomeau;
 
 public class Greeting {
 
