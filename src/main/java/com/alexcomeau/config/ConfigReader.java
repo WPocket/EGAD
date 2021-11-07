@@ -44,7 +44,7 @@ public class ConfigReader {
         String url = db.getUrl();
         url = url.replaceFirst("\\$\\{password\\}", db.getPassword())
                 .replaceFirst("\\$\\{username\\}", db.getUsername()).replaceFirst("\\$\\{port\\}", db.getPort())
-                .replaceFirst("\\$\\{ip\\}", db.getIp());
+                .replaceFirst("\\$\\{ip\\}", db.getIp()).replaceFirst("\\$\\{db\\}", db.getUse());
         db.setUrl(url);
         return db;
     }

@@ -26,7 +26,7 @@ public class Redis implements KeyValue{
 
     @Override
     public void Disconnect() throws DatabaseExecption {
-        // TODO Auto-generated method stub
+        //flesh this out
         if(jedis == null){
             return;
         }
@@ -76,55 +76,55 @@ public class Redis implements KeyValue{
 
     @Override
     public void setKeyExpire(String key, long exp) throws DatabaseExecption {
-        // TODO Auto-generated method stub
+        //flesh this out
         
     }
 
     @Override
     public void setWExpire(String key, String value, int expire) throws DatabaseExecption {
-        // TODO Auto-generated method stub
+        //flesh this out
         
     }
 
     @Override
     public boolean exists(String key) {
-        // TODO Auto-generated method stub
+        //flesh this out
         return false;
     }
 
     @Override
     public void incr(String key) {
-        // TODO Auto-generated method stub
+        //flesh this out
         
     }
 
     @Override
     public void incrBy(String key, int incr) {
-        // TODO Auto-generated method stub
+        //flesh this out
         
     }
 
     @Override
     public void delete(String key) {
-        // TODO Auto-generated method stub
+        //flesh this out
         
     }
 
     @Override
     public void addMultiple(HashMap<String, String> hMap) {
-        // TODO Auto-generated method stub
+        //flesh this out
         
     }
 
     @Override
     public HashMap<String, String> getMultiple(List<String> get) {
-        // TODO Auto-generated method stub
+        //flesh this out
         return null;
     }
 
     @Override
     public String getType(String key) {
-        // TODO Auto-generated method stub
+        //flesh this out
         return null;
     }
     
