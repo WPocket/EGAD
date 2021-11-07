@@ -3,7 +3,7 @@
         {
             "name":"mysql-1",
             "supplier":"MySQL",
-            "url":"${username}:${password}@${ip}",
+            "url":"mysql://${username}:${password}@${ip}",
             "username":"server",
             "password":"serverpass",
             "ip":"10.16.40.202",
