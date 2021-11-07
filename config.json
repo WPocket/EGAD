@@ -2,18 +2,20 @@
     "relational":[
         {
             "name":"mysql-1",
-            "url":"",
+            "supplier":"MySQL",
+            "url":"${username}:${password}@host_or_host_sublist",
             "username":"",
-            "passwd":"",
+            "password":"",
             "use":"EGAD"
         }
     ],
     "keyValue":[
         {
             "name":"redis-1",
-            "url":"redis://${password}@10.16.40.204",
+            "supplier":"redis",
+            "url":"redis://10.16.40.204",
             "username":"",
-            "passwd":"redispass",
+            "password":"",
             "use":""
         }
     ],
