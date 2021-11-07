@@ -1,4 +1,4 @@
-package com.alexcomeau;
+package com.alexcomeau.greeting;
 
 import java.util.concurrent.atomic.AtomicLong;
 

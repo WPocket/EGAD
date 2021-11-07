@@ -1,0 +1,24 @@
+{
+    "relational":[
+        {
+            "name":"mysql-1",
+            "url":"",
+            "username":"",
+            "passwd":"",
+            "use":"EGAD"
+        }
+    ],
+    "keyValue":[
+        {
+            "name":"redis-1",
+            "url":"redis://${password}@10.16.40.204",
+            "username":"",
+            "passwd":"redispass",
+            "use":""
+        }
+    ],
+    "port":8080,
+    "passwordSha256":"",
+    "defaultRelationalIndex":-1,
+    "defaultKeyValueIndex":0
+}
