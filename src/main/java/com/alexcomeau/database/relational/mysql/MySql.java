@@ -57,8 +57,8 @@ public class MySql implements Relational{
     public ArrayList<String> select(String value, String table) throws DatabaseExecption {
         try{
             connect();
-            PreparedStatement stmt = con.prepareStatement("SELECT ? FROM " + table);
-            stmt.setString(1, value);
+            PreparedStatement stmt = con.prepareStatement("SELECT " + value + " FROM " + table);
+    
 
             ResultSet rs = stmt.executeQuery();
             ArrayList<String> result = new ArrayList<>();
