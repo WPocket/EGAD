@@ -1,6 +1,7 @@
 package com.alexcomeau;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.management.relation.Relation;
 
@@ -29,8 +30,8 @@ public class Main {
             e.printStackTrace();
             System.exit(0);
         }
-        //SpringApplication app = new SpringApplication(Main.class);
-        //app.setDefaultProperties(Collections.singletonMap("server.port", (config.getPort() <= 0)? "8080" : config.getPort()));
+        SpringApplication app = new SpringApplication(Main.class);
+        app.setDefaultProperties(Collections.singletonMap("server.port", (config.getPort() <= 0)? "8080" : config.getPort()));
         KVFactory kvf = new KVFactory();
         kv.add(kvf.parseDB(config.getKeyValue()[0]));
 
@@ -46,7 +47,7 @@ public class Main {
         } catch (DatabaseExecption e) {
             e.printStackTrace();
         }
-        //app.run(args);
+        app.run(args);
         
     }
 

@@ -7,18 +7,19 @@ import com.alexcomeau.database.DatabaseExecption;
 import com.alexcomeau.database.keyvalue.KeyValue;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("kv/")
+@RequestMapping("kv")
 /**
  * KVRest
  * */
 public class KVRest {
-    @GetMapping("get/${key}")
-	  public ArrayList<String> getKey(@RequestParam(value = "key") String key) {
+    @GetMapping("/get/{key}")
+	  public ArrayList<String> getKey(@PathVariable String key) {
         ArrayList<String> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
             try{
