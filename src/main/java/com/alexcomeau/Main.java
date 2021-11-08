@@ -3,8 +3,6 @@ package com.alexcomeau;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.management.relation.Relation;
-
 import com.alexcomeau.config.Config;
 import com.alexcomeau.config.ConfigReader;
 import com.alexcomeau.database.DatabaseExecption;
