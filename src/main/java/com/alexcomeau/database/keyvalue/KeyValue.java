@@ -16,18 +16,18 @@ public interface KeyValue {
 
     public void setKeyExpire(String key, long exp) throws DatabaseExecption;
 
-    public void setWExpire(String key, String value, int expire) throws DatabaseExecption;
+    public void setWExpire(String key, String value, long expire) throws DatabaseExecption;
 
-    public boolean exists(String key);
+    public boolean exists(String key) throws DatabaseExecption;
 
-    public void incr(String key);
-    public void incrBy(String key, int incr);
+    public long incr(String key) throws DatabaseExecption;
+    public long incrBy(String key, int incr) throws DatabaseExecption;
 
-    public void delete(String key);
+    public void delete(String key) throws DatabaseExecption;
 
-    public void addMultiple(HashMap<String, String> hMap);
+    public void addMultiple(HashMap<String, String> hMap) throws DatabaseExecption;
 
-    public HashMap<String, String> getMultiple(List<String> get);
+    public HashMap<String, String> getMultiple(List<String> get) throws DatabaseExecption;
     
-    public String getType(String key);
+    public String getType(String key) throws DatabaseExecption;
 }
