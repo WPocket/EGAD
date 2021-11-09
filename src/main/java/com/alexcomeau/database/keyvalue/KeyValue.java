@@ -1,7 +1,7 @@
 package com.alexcomeau.database.keyvalue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.alexcomeau.database.DatabaseExecption;
 
@@ -21,13 +21,13 @@ public interface KeyValue {
     public boolean exists(String key) throws DatabaseExecption;
 
     public long incr(String key) throws DatabaseExecption;
-    public long incrBy(String key, int incr) throws DatabaseExecption;
+    public long incrBy(String key, long incr) throws DatabaseExecption;
 
     public void delete(String key) throws DatabaseExecption;
 
     public void addMultiple(HashMap<String, String> hMap) throws DatabaseExecption;
 
-    public HashMap<String, String> getMultiple(List<String> get) throws DatabaseExecption;
+    public HashMap<String, String> getMultiple(ArrayList<String> get) throws DatabaseExecption;
     
     public String getType(String key) throws DatabaseExecption;
 }

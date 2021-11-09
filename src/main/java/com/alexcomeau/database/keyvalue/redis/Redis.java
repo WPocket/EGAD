@@ -1,6 +1,7 @@
 package com.alexcomeau.database.keyvalue.redis;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -132,7 +133,7 @@ public class Redis implements KeyValue{
     }
 
     @Override
-    public long incrBy(String key, int incr) throws DatabaseExecption {
+    public long incrBy(String key, long incr) throws DatabaseExecption {
         jedis.connect();
         try{
             long rep = jedis.incrBy(key, incr);
@@ -185,7 +186,7 @@ public class Redis implements KeyValue{
     }
 
     @Override
-    public HashMap<String, String> getMultiple(List<String> get) throws DatabaseExecption  {
+    public HashMap<String, String> getMultiple(ArrayList<String> get) throws DatabaseExecption  {
         jedis.connect();
         HashMap<String, String> hMap = new HashMap<>();
         try{
