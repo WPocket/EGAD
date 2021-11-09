@@ -148,7 +148,7 @@ public class Redis implements KeyValue{
     public void delete(String key) throws DatabaseExecption  {
         jedis.connect();
         try{
-            long rep = jedis.del();
+            long rep = jedis.del(key);
             if(rep != 1){
                 throw new DatabaseExecption("11", "key was not removed");
             }
