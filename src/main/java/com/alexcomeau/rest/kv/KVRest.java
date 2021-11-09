@@ -3,7 +3,6 @@ package com.alexcomeau.rest.kv;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.alexcomeau.Main;
 import com.alexcomeau.database.DatabaseExecption;
@@ -11,7 +10,6 @@ import com.alexcomeau.database.keyvalue.KeyValue;
 import com.alexcomeau.rest.RestError;
 import com.alexcomeau.rest.RestResponse;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

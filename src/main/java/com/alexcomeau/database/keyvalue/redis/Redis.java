@@ -3,7 +3,6 @@ package com.alexcomeau.database.keyvalue.redis;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.alexcomeau.config.Database;
 import com.alexcomeau.database.DatabaseExecption;
