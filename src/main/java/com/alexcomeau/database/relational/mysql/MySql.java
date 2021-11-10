@@ -117,7 +117,7 @@ public class MySql implements Relational {
 
     @Override
     public String selectWhereOffset(String table, String value, String where, int offset) throws DatabaseException {
-        String offsetStr = " LIMIT " + ((offset != 0) ? offset + ",1" : "1,1");
+        String offsetStr = " LIMIT " + ((offset != 0) ? offset + ",1" : "0,1");
         String whereStr = ((!where.equals("")) ? " WHERE " + where : "");
         try {
             if(value.equals("")){
@@ -135,7 +135,7 @@ public class MySql implements Relational {
                 disconnect();
                 return addme;
             }
-            throw new Error("value was not found");
+            throw new DatabaseException("30", "value was not found/was empty");
         }catch(DatabaseException e){
             throw e;
         } catch (Exception e) {
@@ -155,7 +155,7 @@ public class MySql implements Relational {
             }
             
             HashMap<String, String> output = new HashMap<>();
-            String offsetStr = " LIMIT " + ((offset != 0) ? offset + ",1" : "1,1");
+            String offsetStr = " LIMIT " + ((offset != 0) ? offset + ",1" : "0,1");
             String whereStr = ((!where.equals("")) ? " WHERE " + where : "");
             String values = "";
             for(String s : multiple){
