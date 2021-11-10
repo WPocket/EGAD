@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.alexcomeau.Main;
-import com.alexcomeau.database.DatabaseExecption;
+import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.keyvalue.KeyValue;
 import com.alexcomeau.rest.RestError;
 import com.alexcomeau.rest.RestResponse;
@@ -28,7 +28,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             res = kv.get(key);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         }catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index");
@@ -41,7 +41,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             kv.set(key, value);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         }catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index");
@@ -55,7 +55,7 @@ public class KVRestIndex {
             Long t = Long.parseLong(time);
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             kv.setKeyExpire(key, t);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index or time is not an integer");
@@ -69,7 +69,7 @@ public class KVRestIndex {
             Long t = Long.parseLong(time);
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             kv.setWExpire(key,value,t);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index or time is not an integer");
@@ -84,7 +84,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             res = kv.exists(key);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index");
@@ -98,7 +98,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             res = kv.incr(key);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index");
@@ -112,7 +112,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             res = kv.incrBy(key,Long.parseLong(incr));
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index or increment is not an integer");
@@ -126,7 +126,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             kv.delete(key);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index or increment is not an integer");
@@ -147,7 +147,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             kv.addMultiple(hMap);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index or increment is not an integer");
@@ -165,7 +165,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             res = kv.getMultiple(list);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index or increment is not an integer");
@@ -180,7 +180,7 @@ public class KVRestIndex {
         try{
             KeyValue kv = Main.kv.get(Integer.parseInt(index));
             res = kv.getType(key);
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch(NumberFormatException | IndexOutOfBoundsException e){
             return new RestError("01", "invalid index or increment is not an integer");

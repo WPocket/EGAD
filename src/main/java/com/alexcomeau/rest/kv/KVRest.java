@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.alexcomeau.Main;
-import com.alexcomeau.database.DatabaseExecption;
+import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.keyvalue.KeyValue;
 import com.alexcomeau.rest.RestError;
 import com.alexcomeau.rest.RestResponse;
@@ -28,7 +28,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 res.add(kv.get(key));
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             }
         }
@@ -40,7 +40,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 kv.set(key, value);
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             }
         }
@@ -54,7 +54,7 @@ public class KVRest {
             for (KeyValue kv : Main.kv) {
                 kv.setKeyExpire(key, t);
             }
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch (NumberFormatException e) {
             return new RestError("05", e.getMessage());
@@ -69,7 +69,7 @@ public class KVRest {
             for (KeyValue kv : Main.kv) {
                 kv.setWExpire(key,value,t);
             }
-        } catch (DatabaseExecption e) {
+        } catch (DatabaseException e) {
             return new RestError(e.getCode(), e.getMessage());
         } catch (NumberFormatException e) {
             return new RestError("05", e.getMessage());
@@ -84,7 +84,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 res.add(kv.exists(key));
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             }
         }
@@ -97,7 +97,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 res.add(kv.incr(key));
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             }
         }
@@ -110,7 +110,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 res.add(kv.incrBy(key,Long.parseLong(incr)));
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             } catch (NumberFormatException e) {
                 return new RestError("05", e.getMessage());
@@ -125,7 +125,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 kv.delete(key);
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             }
         }
@@ -146,7 +146,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 kv.addMultiple(hMap);
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             }
         }
@@ -163,7 +163,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 res.add(kv.getMultiple(list));
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             }
         }
@@ -177,7 +177,7 @@ public class KVRest {
         for (KeyValue kv : Main.kv) {
             try{
                 res.add(kv.getType(key));
-            } catch (DatabaseExecption e) {
+            } catch (DatabaseException e) {
                 return new RestError(e.getCode(), e.getMessage());
             }
         }

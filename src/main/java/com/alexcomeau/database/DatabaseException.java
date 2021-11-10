@@ -1,13 +1,13 @@
 package com.alexcomeau.database;
 
-public class DatabaseExecption extends Exception{
+public class DatabaseException extends Exception{
     private String code;
-    public DatabaseExecption(String code, String message){
+    public DatabaseException(String code, String message){
         super(message);
         this.setCode(code);
     }
     
-    public DatabaseExecption(String code, String message, Throwable cause) {
+    public DatabaseException(String code, String message, Throwable cause) {
         super(message, cause);
         this.setCode(code);
     }

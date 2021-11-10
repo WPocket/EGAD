@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.alexcomeau.Main;
-import com.alexcomeau.database.DatabaseExecption;
+import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.relational.Relational;
 import com.alexcomeau.rest.RestError;
 
@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class RelationalRest {
     @GetMapping("/select/table={table}&value={value}")
     public Serializable getKey(@PathVariable String table, @PathVariable String value) {
-        ArrayList<ArrayList<String>> al = new ArrayList<>();
+        ArrayList<String> al = new ArrayList<>();
         for(Relational rel : Main.relational){
             try{
                 al.add(rel.select(value, table));
-            }catch(DatabaseExecption e){
+            }catch(DatabaseException e){
                 return new RestError(e.getCode(), e.getMessage());
             }
         }
