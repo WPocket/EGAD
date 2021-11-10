@@ -76,7 +76,7 @@ public class RelationalRest {
         return al;
     }
 
-    @GetMapping("/select/table={table}&multiple={value}}")
+    @GetMapping("/select/table={table}&multiple={value}")
     public Serializable getMultiple(@PathVariable String table, @PathVariable String[] value) {
         ArrayList<HashMap<String, String>> al = new ArrayList<>();
         ArrayList<String> valueAList = new ArrayList<>();

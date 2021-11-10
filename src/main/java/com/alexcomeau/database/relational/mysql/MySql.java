@@ -169,7 +169,7 @@ public class MySql implements Relational {
                 ResultSet rs = stmt.executeQuery();
                 while (rs.next()) {
                     for(int i = 0; i < multiple.size(); i++){
-                        output.put(rs.getRowId(i).toString(), rs.getString(i));
+                        output.put(multiple.get(i), rs.getString(multiple.get(i)));
                     }
                 }
                 return output;
