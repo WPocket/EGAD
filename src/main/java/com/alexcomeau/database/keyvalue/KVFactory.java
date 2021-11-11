@@ -7,7 +7,7 @@ public class KVFactory {
     public KVFactory() {
     }
 
-    public KeyValue parseDB(Database db) {
+    public KeyValue parseDB(Database db){
         switch (db.getSupplier().toLowerCase()) {
             case "redis":
                 return new Redis(db);

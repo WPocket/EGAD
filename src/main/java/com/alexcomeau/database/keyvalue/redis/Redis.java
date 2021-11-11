@@ -14,6 +14,10 @@ public class Redis implements KeyValue{
     private Jedis jedis;
 
     public Redis(Database db){
+        if(db == null){
+            jedis = new Jedis();
+            return;
+        }
         jedis = new Jedis(URI.create(db.getUrl()));
     }
 
@@ -39,9 +43,9 @@ public class Redis implements KeyValue{
 
     @Override
     public String get(String key) throws DatabaseException {
-        jedis.connect();
         String out;
         try{
+            jedis.connect();
             out = jedis.get(key);
             if(out == null){
                 return "";
@@ -59,9 +63,9 @@ public class Redis implements KeyValue{
 
     @Override
     public void set(String key, String value) throws DatabaseException {
-        jedis.connect();
         String reply;
         try{
+            jedis.connect();
             reply = jedis.set(key, value);
             if(reply.equals("OK")){
                 return;
@@ -77,8 +81,8 @@ public class Redis implements KeyValue{
 
     @Override
     public void setKeyExpire(String key, long exp) throws DatabaseException {
-        jedis.connect();
         try{
+            jedis.connect();
             double rep = jedis.expire(key, exp);
             if(rep == 0){
                 throw new DatabaseException("11", "key was not set");
@@ -92,8 +96,8 @@ public class Redis implements KeyValue{
 
     @Override
     public void setWExpire(String key, String value, long expire) throws DatabaseException {
-        jedis.connect();
         try{
+            jedis.connect();
             String reply = jedis.setex(key, expire, value);
             if(reply.equals("OK")){
                 return;
@@ -110,8 +114,8 @@ public class Redis implements KeyValue{
 
     @Override
     public boolean exists(String key) throws DatabaseException {
-        jedis.connect();
         try{
+            jedis.connect();
             boolean rep = jedis.exists(key);
             return rep;
         }catch(Exception e){
@@ -121,8 +125,8 @@ public class Redis implements KeyValue{
 
     @Override
     public long incr(String key) throws DatabaseException {
-        jedis.connect();
         try{
+            jedis.connect();
             long rep = jedis.incr(key);
             return rep;
         }catch(Exception e){
@@ -133,8 +137,8 @@ public class Redis implements KeyValue{
 
     @Override
     public long incrBy(String key, long incr) throws DatabaseException {
-        jedis.connect();
         try{
+            jedis.connect();
             long rep = jedis.incrBy(key, incr);
             return rep;
         }catch(Exception e){
@@ -146,8 +150,8 @@ public class Redis implements KeyValue{
 
     @Override
     public void delete(String key) throws DatabaseException  {
-        jedis.connect();
         try{
+            jedis.connect();
             long rep = jedis.del(key);
             if(rep != 1){
                 throw new DatabaseException("11", "key was not removed");
@@ -162,8 +166,8 @@ public class Redis implements KeyValue{
 
     @Override
     public void addMultiple(HashMap<String, String> hMap) throws DatabaseException {
-        jedis.connect();
         try{
+            jedis.connect();
             String errorKeys = "";
             for(String key :  hMap.keySet()){
                 try{
@@ -215,8 +219,8 @@ public class Redis implements KeyValue{
 
     @Override
     public String getType(String key) throws DatabaseException {
-        jedis.connect();
         try{
+            jedis.connect();
             String rep = jedis.type(key);
             if(rep == "none"){
                 throw new DatabaseException("12", "key does not exist");
