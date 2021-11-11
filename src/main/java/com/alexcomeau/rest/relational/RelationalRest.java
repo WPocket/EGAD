@@ -152,4 +152,151 @@ public class RelationalRest {
         }
         return al;
     }
+
+    // MAX
+
+    @GetMapping("/select/{max}/table={table}&value={value}")
+    public Serializable getKeyMax(@PathVariable String table, @PathVariable String value, @PathVariable String max) {
+        ArrayList<ArrayList<String>> al = new ArrayList<>();
+        int maxI = Integer.parseInt(max);
+        for(Relational rel : Main.relational){
+            try{
+                al.add(rel.selectMax(value, table, maxI));
+            }catch(NumberFormatException e){
+                return new RestError("03", "invalid max");
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return al;
+    }
+
+    @GetMapping("/select/{max}/table={table}&value={value}&where={where}")
+    public Serializable getKeyWhereMax(@PathVariable String table, @PathVariable String value, @PathVariable String where, @PathVariable String max) {
+        ArrayList<ArrayList<String>> al = new ArrayList<>();
+        int maxI = Integer.parseInt(max);
+        for(Relational rel : Main.relational){
+            try{
+                al.add(rel.selectWhereMax(value, table, where, maxI));
+            }catch(NumberFormatException e){
+                return new RestError("03", "invalid max");
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return al;
+    }
+    @GetMapping("/select/{max}/table={table}&value={value}&offset={offset}")
+    public Serializable getKeyOffsetMax(@PathVariable String table, @PathVariable String value, @PathVariable String offset, @PathVariable String max) {
+        ArrayList<ArrayList<String>> al = new ArrayList<>();
+        int maxI = Integer.parseInt(max);
+        for(Relational rel : Main.relational){
+            try{
+                al.add(rel.selectOffsetMax(value, table, Integer.parseInt(offset), maxI));
+            }catch(NumberFormatException e){
+                return new RestError("03", "offset has to be an integer");
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return al;
+    }
+
+    @GetMapping("/select/{max}/table={table}&value={value}&offset={offset}&where={where}")
+    public Serializable getKeyOffsetWhereMax(@PathVariable String table, @PathVariable String value,
+            @PathVariable String offset, @PathVariable String where, @PathVariable String max) {
+        ArrayList<ArrayList<String>> al = new ArrayList<>();
+        int maxI = Integer.parseInt(max);
+        for(Relational rel : Main.relational){
+            try{
+                al.add(rel.selectWhereOffsetMax(value, table, where, Integer.parseInt(offset), maxI));
+            }catch(NumberFormatException e){
+                return new RestError("03", "offset or max has to be an integer");
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return al;
+    }
+
+    @GetMapping("/select/{max}/table={table}&multiple={value}")
+    public Serializable getMultipleMax(@PathVariable String table, @PathVariable String[] value, @PathVariable String max) {
+        ArrayList<ArrayList<HashMap<String, String>>> al = new ArrayList<>();
+        ArrayList<String> valueAList = new ArrayList<>();
+        int maxI = Integer.parseInt(max);
+        for (String s : value) {
+            valueAList.add(s);
+        }
+        for(Relational rel : Main.relational){
+            try{
+                al.add(rel.selectMultipleMax(valueAList, table, maxI));
+            }catch(NumberFormatException e){
+                return new RestError("03", "invalid Max");
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return al;
+    }
+
+    @GetMapping("/select/{max}/table={table}&multiple={value}&where={where}")
+    public Serializable getMultipleWhere(@PathVariable String table, @PathVariable String[] value, @PathVariable String where, @PathVariable String max) {
+        ArrayList<ArrayList<HashMap<String, String>>> al = new ArrayList<>();
+        ArrayList<String> valueAList = new ArrayList<>();
+        int maxI = Integer.parseInt(max);
+        for (String s : value) {
+            valueAList.add(s);
+        }
+        for(Relational rel : Main.relational){
+            try{
+                al.add(rel.selectMultipleWhereMax(valueAList, table, where, maxI));
+            }catch(NumberFormatException e){
+                return new RestError("03", "offset has to be an integer");
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return al;
+    }
+
+    @GetMapping("/select/{max}/table={table}&multiple={value}&offset={offset}&where={where}")
+    public Serializable getMultipleWhereOffset(@PathVariable String table, @PathVariable String[] value,
+            @PathVariable String offset, @PathVariable String where, @PathVariable String max) {
+        ArrayList<ArrayList<HashMap<String, String>>> al = new ArrayList<>();
+        ArrayList<String> valueAList = new ArrayList<>();
+        int maxI = Integer.parseInt(max);
+        for (String s : value) {
+            valueAList.add(s);
+        }
+        for(Relational rel : Main.relational){
+            try{
+                al.add(rel.selectMultipleWhereOffsetMax(valueAList, table, where, Integer.parseInt(offset), maxI));
+            }catch(NumberFormatException e){
+                return new RestError("03", "offset has to be an integer");
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return al;
+    }
+    @GetMapping("/select/{max}/table={table}&multiple={value}&offset={offset}")
+    public Serializable getMultipleOffset(@PathVariable String table, @PathVariable String[] value,
+            @PathVariable String offset, @PathVariable String max) {
+        ArrayList<ArrayList<HashMap<String, String>>> al = new ArrayList<>();
+        ArrayList<String> valueAList = new ArrayList<>();
+        int maxI = Integer.parseInt(max);
+        for (String s : value) {
+            valueAList.add(s);
+        }
+        for(Relational rel : Main.relational){
+            try{
+                al.add(rel.selectMultipleOffsetMax(valueAList, table, Integer.parseInt(offset), maxI));
+            }catch(NumberFormatException e){
+                return new RestError("03", "offset has to be an integer");
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return al;
+    }
 }

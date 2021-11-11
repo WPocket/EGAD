@@ -183,55 +183,109 @@ public class MySql implements Relational {
 
     @Override
     public ArrayList<String> selectMax(String value, String table, int max) throws DatabaseException {
-        // flesh this out
-        return null;
+        return selectWhereOffsetMax(value, table, "", 0, max);
     }
 
     @Override
     public ArrayList<HashMap<String, String>> selectMultipleMax(ArrayList<String> multiple, String table, int max)
             throws DatabaseException {
-        // flesh this out
-        return null;
+            return selectMultipleWhereOffsetMax(multiple, table, "", 0, max);
     }
 
     @Override
-    public ArrayList<String> selectWhereMax(String single, String where, int max) throws DatabaseException {
-        // flesh this out
-        return null;
+    public ArrayList<String> selectWhereMax(String value, String table, String where, int max) throws DatabaseException {
+        return selectWhereOffsetMax(value, table, where, 0, max);
     }
 
     @Override
     public ArrayList<HashMap<String, String>> selectMultipleWhereMax(ArrayList<String> multiple, String table,
             String where, int max) throws DatabaseException {
-        // flesh this out
-        return null;
+        return selectMultipleWhereOffsetMax(multiple, table, where, 0, max);
     }
 
     @Override
     public ArrayList<String> selectOffsetMax(String value, String table, int offset, int max) throws DatabaseException {
         // flesh this out
-        return null;
+        return selectWhereOffsetMax(value, table, "", offset, max);
     }
 
     @Override
     public ArrayList<HashMap<String, String>> selectMultipleOffsetMax(ArrayList<String> multiple, String table,
             int offset, int max) throws DatabaseException {
-        // flesh this out
-        return null;
+        return selectMultipleWhereOffsetMax(multiple, table, "", offset, max);
     }
 
     @Override
-    public ArrayList<String> selectWhereOffsetMax(String single, String where, int offset, int max)
+    public ArrayList<String> selectWhereOffsetMax(String value, String table, String where, int offset, int max)
             throws DatabaseException {
-        // flesh this out
-        return null;
+            String offsetStr = " LIMIT " + ((offset != 0) ? offset + "," + max : "0," + max);
+            String whereStr = ((!where.equals("")) ? " WHERE " + where : "");
+            try {
+                if(value.equals("")){
+                    throw new DatabaseException("33", "the value cannot be empty");
+                }
+                if(table.equals("")){
+                    throw new DatabaseException("34", "the table name cannot be empty");
+                }
+                connect();
+                PreparedStatement stmt = con.prepareStatement("SELECT " + value + " FROM " + table + whereStr + offsetStr);
+    
+                ResultSet rs = stmt.executeQuery();
+                ArrayList<String> output = new ArrayList<>();
+                while (rs.next()) {
+                    String addme = rs.getString(1);
+                    output.add(addme);
+                }
+                if(output.size() != 0){
+                    return output;
+                }
+                throw new DatabaseException("30", "value was not found/was empty");
+            }catch(DatabaseException e){
+                throw e;
+            } catch (Exception e) {
+                disconnect();
+                throw new DatabaseException("05", e.getMessage(), e);
+            }
     }
 
     @Override
     public ArrayList<HashMap<String, String>> selectMultipleWhereOffsetMax(ArrayList<String> multiple, String table,
             String where, int offset, int max) throws DatabaseException {
         // flesh this out
-        return null;
+        if(multiple.size() == 0){
+            throw new DatabaseException("33", "the list of values cannot be empty");
+        }
+        if(table.equals("")){
+            throw new DatabaseException("34", "the table name cannot be empty");
+        }
+        
+        ArrayList<HashMap<String, String>> output = new ArrayList<>();
+        String offsetStr = " LIMIT " + ((offset != 0) ? offset + "," + max : "0," + max);
+        String whereStr = ((!where.equals("")) ? " WHERE " + where : "");
+        String values = "";
+        for(String s : multiple){
+            values += s + ",";
+        }
+        values = values.substring(0, values.length() - 1);
+        try {
+            connect();
+            PreparedStatement stmt = con.prepareStatement("SELECT " + values + " FROM " + table + whereStr + offsetStr);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                HashMap<String, String> item = new HashMap<>();
+                for(int i = 0; i < multiple.size(); i++){
+                    item.put(multiple.get(i), rs.getString(multiple.get(i)));
+                }
+                output.add(item);
+            }
+            return output;
+        } catch(DatabaseException e){
+            throw e;
+        }catch (Exception e) {
+            disconnect();
+            throw new DatabaseException("05", e.getMessage(), e);
+        }
     }
 
     @Override

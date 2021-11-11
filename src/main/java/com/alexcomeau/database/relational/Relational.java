@@ -28,13 +28,13 @@ public interface Relational {
     public ArrayList<String> selectMax(String value, String table, int max)throws DatabaseException;
     public ArrayList<HashMap<String, String>> selectMultipleMax(ArrayList<String> multiple, String table, int max)throws DatabaseException;
 
-    public ArrayList<String> selectWhereMax(String single,String where, int max)throws DatabaseException;
+    public ArrayList<String> selectWhereMax(String value, String table, String where, int max)throws DatabaseException;
     public ArrayList<HashMap<String, String>> selectMultipleWhereMax(ArrayList<String> multiple, String table,String where, int max)throws DatabaseException;
 
     public ArrayList<String> selectOffsetMax(String value, String table, int offset, int max)throws DatabaseException;
     public ArrayList<HashMap<String, String>> selectMultipleOffsetMax(ArrayList<String> multiple, String table, int offset, int max)throws DatabaseException;
 
-    public ArrayList<String> selectWhereOffsetMax(String single,String where, int offset, int max)throws DatabaseException;
+    public ArrayList<String> selectWhereOffsetMax(String value, String table,String where, int offset, int max)throws DatabaseException;
     public ArrayList<HashMap<String, String>> selectMultipleWhereOffsetMax(ArrayList<String> multiple, String table,String where, int offset, int max)throws DatabaseException;
 
     
