@@ -12,6 +12,7 @@ public interface Relational {
     public void disconnect()throws DatabaseException;
 
     public void insert(String table, ArrayList<Pair<String, String>> values)throws DatabaseException;
+    public void insertMany(String table, ArrayList<HashMap<String, String>> values)throws DatabaseException;
     
     public String select(String value, String table)throws DatabaseException;
     public HashMap<String, String> selectMultiple(ArrayList<String> multiple, String table)throws DatabaseException;

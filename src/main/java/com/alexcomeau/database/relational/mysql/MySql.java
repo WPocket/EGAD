@@ -3,6 +3,7 @@ package com.alexcomeau.database.relational.mysql;
 import com.alexcomeau.config.Database;
 import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.relational.Relational;
+import com.alexcomeau.utils.Common;
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -349,5 +350,20 @@ public class MySql implements Relational {
     public boolean dropColumn(String name, String table) throws DatabaseException {
         // flesh this out
         return false;
+    }
+
+    @Override
+    public void insertMany(String table, ArrayList<HashMap<String, String>> values) throws DatabaseException {
+        // TODO Auto-generated method stub
+        if(values.size() == 0){
+            throw new DatabaseException("33", "the list of values cannot be empty");
+        }
+        if(table.equals("")){
+            throw new DatabaseException("34", "the table name cannot be empty");
+        }
+        for(HashMap<String, String> entry : values){
+            insert(table, Common.HashmapToPairList(entry));
+        }
+        
     }
 }
