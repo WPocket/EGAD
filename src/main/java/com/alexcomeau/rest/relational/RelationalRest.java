@@ -8,9 +8,16 @@ import com.alexcomeau.Main;
 import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.relational.Relational;
 import com.alexcomeau.rest.RestError;
+import com.alexcomeau.rest.relational.objects.EntryPair;
+import com.alexcomeau.rest.relational.objects.Insert;
+import com.alexcomeau.rest.relational.objects.InsertMany;
+import com.alexcomeau.utils.Common;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -298,5 +305,35 @@ public class RelationalRest {
             }
         }
         return al;
+    }
+
+    @PostMapping("/insertOne")
+    public Serializable insertOne(@RequestBody Insert data){
+        System.out.println("table:" + data.getTable());
+        ArrayList<Pair<String, String>> pairlist = Common.hashmapToPairList(Common.entryPairToHashMap(data.getData()));
+        for(Relational rel : Main.relational){
+            try{
+                rel.insert(data.getTable(), pairlist);
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return new RestError("0", "OK");
+    }
+
+    @PostMapping("/insertMany")
+    public Serializable insertMany(@RequestBody InsertMany data){
+        ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
+        for(EntryPair[] p : data.getData()){
+            dataList.add(Common.entryPairToHashMap(p));
+        }
+        for(Relational rel : Main.relational){
+            try{
+                rel.insertMany(data.getTable(), dataList);
+            }catch(DatabaseException e){
+                return new RestError(e.getCode(), e.getMessage());
+            }
+        }
+        return new RestError("0", "OK");
     }
 }

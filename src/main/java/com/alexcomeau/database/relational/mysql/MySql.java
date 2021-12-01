@@ -362,7 +362,7 @@ public class MySql implements Relational {
             throw new DatabaseException("34", "the table name cannot be empty");
         }
         for(HashMap<String, String> entry : values){
-            insert(table, Common.HashmapToPairList(entry));
+            insert(table, Common.hashmapToPairList(entry));
         }
         
     }
