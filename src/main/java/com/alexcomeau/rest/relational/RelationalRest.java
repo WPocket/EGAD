@@ -9,8 +9,6 @@ import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.relational.Relational;
 import com.alexcomeau.rest.RestError;
 import com.alexcomeau.rest.relational.objects.EntryPair;
-import com.alexcomeau.rest.relational.objects.Insert;
-import com.alexcomeau.rest.relational.objects.InsertMany;
 import com.alexcomeau.utils.Common;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -307,13 +305,12 @@ public class RelationalRest {
         return al;
     }
 
-    @PostMapping("/insertOne")
-    public Serializable insertOne(@RequestBody Insert data){
-        System.out.println("table:" + data.getTable());
-        ArrayList<Pair<String, String>> pairlist = Common.hashmapToPairList(Common.entryPairToHashMap(data.getData()));
+    @PostMapping("/insertOne/{table}")
+    public Serializable insertOne(@RequestBody EntryPair[] data, @PathVariable String table){
+        ArrayList<Pair<String, String>> pairlist = Common.hashmapToPairList(Common.entryPairToHashMap(data));
         for(Relational rel : Main.relational){
             try{
-                rel.insert(data.getTable(), pairlist);
+                rel.insert(table, pairlist);
             }catch(DatabaseException e){
                 return new RestError(e.getCode(), e.getMessage());
             }
@@ -321,15 +318,15 @@ public class RelationalRest {
         return new RestError("0", "OK");
     }
 
-    @PostMapping("/insertMany")
-    public Serializable insertMany(@RequestBody InsertMany data){
+    @PostMapping("/insertMany/{table}")
+    public Serializable insertMany(@RequestBody EntryPair[][] data, @PathVariable String table){
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
-        for(EntryPair[] p : data.getData()){
+        for(EntryPair[] p : data){
             dataList.add(Common.entryPairToHashMap(p));
         }
         for(Relational rel : Main.relational){
             try{
-                rel.insertMany(data.getTable(), dataList);
+                rel.insertMany(table, dataList);
             }catch(DatabaseException e){
                 return new RestError(e.getCode(), e.getMessage());
             }

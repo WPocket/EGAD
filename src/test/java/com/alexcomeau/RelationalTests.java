@@ -57,8 +57,8 @@ public class RelationalTests {
         db.setUrl("test1234");
         db.setSupplier("mysql");
         Main.relational.add(rf.parseDB(db));
-        String json = "{\"data\":[{\"key\":\"test\", \"value\":\"value\"}], \"table\":\"testTable\"}";
-        this.mockMvc.perform(MockMvcRequestBuilders.post("http://127.0.0.1:8080/rel/insertOne")
+        String json = "[{\"key\":\"test\", \"value\":\"value\"}]";
+        this.mockMvc.perform(MockMvcRequestBuilders.post("http://127.0.0.1:8080/rel/insertOne/test")
             .content(json)
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
@@ -73,23 +73,44 @@ public class RelationalTests {
         db.setUrl("test1234");
         db.setSupplier("mysql");
         Main.relational.add(rf.parseDB(db));
+        /*
+        [
+            [
+                {
+                    "key":"test",
+                    "value":"testValue"
+                },
+                {
+                    "key":"test2",
+                    "value":"testValue"
+                }
+            ],
+            [
+                {
+                    "key":"test",
+                    "value":"testValue"
+                },
+                {
+                    "key":"test2",
+                    "value":"testValue"
+                }
+            ]
+        ]
+        */
         String json = ""+
-            "{"+
-                "\"table\":\"test\"," + 
-                "\"data\":[" + 
-                    "["+
-                        "{\"key\":\"test\",\"value\":\"testValue\"},"+
-                        "{\"key\":\"test2\",\"value\":\"testValue\"}" +
-                    "],"+
-                    "["+
-                        "{\"key\":\"test\",\"value\":\"testValue\"},"+
-                        "{\"key\":\"test2\",\"value\":\"testValue\"}" +
-                    "]"+
+            "[" + 
+                "["+
+                    "{\"key\":\"test\",\"value\":\"testValue\"},"+
+                    "{\"key\":\"test2\",\"value\":\"testValue\"}" +
+                "],"+
+                "["+
+                    "{\"key\":\"test\",\"value\":\"testValue\"},"+
+                    "{\"key\":\"test2\",\"value\":\"testValue\"}" +
                 "]"+
-            "}";
+            "]";
 
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("http://127.0.0.1:8080/rel/insertMany").content(json)
+        this.mockMvc.perform(MockMvcRequestBuilders.post("http://127.0.0.1:8080/rel/insertMany/test").content(json)
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print()).andExpect(status().isOk());

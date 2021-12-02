@@ -7,6 +7,7 @@ import com.alexcomeau.utils.Common;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -57,25 +58,16 @@ public class MySql implements Relational {
     public void insert(String table, ArrayList<Pair<String, String>> values) throws DatabaseException {
         try {
             connect();
-            String sql = "INSERT INTO" + table + "(";
+            String sql = "INSERT INTO " + table + " (";
             String sqlEnd = " VALUES (";
             for (Pair<String, String> p : values) {
-                sql += "\"" + p.getLeft() + "\",";
+                sql += "" + p.getLeft() + ",";
                 sqlEnd += "\"" + p.getRight() + "\",";
             }
             sql = (String) sql.substring(0, sql.length() - 1) + ")";
             sqlEnd = (String) sqlEnd.substring(0, sqlEnd.length() - 1) + ")";
             PreparedStatement stmt = con.prepareStatement(sql + sqlEnd);
 
-            ResultSet rs = stmt.executeQuery();
-            ArrayList<String> result = new ArrayList<>();
-            while (rs.next()) {
-                String addme = rs.getString(1);
-                if (addme == null) {
-                    addme = "NULL";
-                }
-                result.add(addme);
-            }
             disconnect();
         } catch (Exception e) {
             disconnect();
@@ -354,7 +346,6 @@ public class MySql implements Relational {
 
     @Override
     public void insertMany(String table, ArrayList<HashMap<String, String>> values) throws DatabaseException {
-        // TODO Auto-generated method stub
         if(values.size() == 0){
             throw new DatabaseException("33", "the list of values cannot be empty");
         }
