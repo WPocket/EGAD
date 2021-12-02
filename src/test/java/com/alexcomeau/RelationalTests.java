@@ -10,12 +10,6 @@ import java.util.ArrayList;
 import com.alexcomeau.config.Database;
 import com.alexcomeau.database.relational.Relational;
 import com.alexcomeau.database.relational.RelationalFactory;
-import com.alexcomeau.rest.relational.objects.EntryPair;
-import com.alexcomeau.rest.relational.objects.Insert;
-import com.alexcomeau.rest.relational.objects.InsertMany;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.Test;
 
@@ -95,34 +89,9 @@ public class RelationalTests {
             "}";
 
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("http://127.0.0.1:8080/rel/insertMany").content(asJsonString(testInsertMany()))
+        this.mockMvc.perform(MockMvcRequestBuilders.post("http://127.0.0.1:8080/rel/insertMany").content(json)
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print()).andExpect(status().isOk());
-    }
-
-
-    private static Insert testInsertData() throws JsonMappingException, JsonProcessingException{
-        String json = "{\"data\":[{\"key\":\"test\", \"value\":\"value\"}], \"table\":\"testTable\"}";
-        ObjectMapper om = new ObjectMapper();
-        return om.readValue(json, Insert.class);
-    }
-
-    private static InsertMany testInsertMany() throws JsonMappingException, JsonProcessingException{
-        InsertMany im = new InsertMany();
-        EntryPair[][] pairArray = new EntryPair[5][];
-        for(int i = 0; i < 5; i++){
-            pairArray[i] = testInsertData().getData();
-        }
-        im.setData(pairArray);
-        im.setTable("testTable");
-        return im;
-    }
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }

@@ -1,10 +1,6 @@
 package com.alexcomeau.rest.relational.objects;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.alexcomeau.utils.Common;
 
 public class InsertMany implements Serializable{
     private EntryPair[][] data;
