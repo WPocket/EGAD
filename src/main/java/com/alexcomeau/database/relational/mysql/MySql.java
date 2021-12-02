@@ -67,6 +67,8 @@ public class MySql implements Relational {
             sql = (String) sql.substring(0, sql.length() - 1) + ")";
             sqlEnd = (String) sqlEnd.substring(0, sqlEnd.length() - 1) + ")";
             PreparedStatement stmt = con.prepareStatement(sql + sqlEnd);
+            stmt.execute();
+            System.out.println("update count: " + stmt.getUpdateCount());
 
             disconnect();
         } catch (Exception e) {

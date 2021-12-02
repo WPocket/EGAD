@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.alexcomeau.Main;
 import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.keyvalue.KeyValue;
 import com.alexcomeau.rest.RestError;
-import com.alexcomeau.rest.RestResponse;
+import com.alexcomeau.utils.ResponseCode;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,201 +21,184 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("kv")
 /**
  * KVRest
- * */
+ */
 public class KVRest {
     @GetMapping("/get/key={key}")
-    //returns an arraylist or an error code
-    public Serializable getKey(@PathVariable String key) {
+    // returns an arraylist or an error code
+    public Serializable getKey(@PathVariable String key, HttpServletResponse response) {
         ArrayList<String> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
-            try{
+            try {
                 res.add(kv.get(key));
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.BAD_REQUEST.code);
+                return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
         return res;
     }
 
     @GetMapping("/set/key={key}&value={value}")
-    public Serializable setKey(@PathVariable String key, @PathVariable String value) {
+    public Serializable setKey(@PathVariable String key, HttpServletResponse response, @PathVariable String value) {
         for (KeyValue kv : Main.kv) {
-            try{
+            try {
                 kv.set(key, value);
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.BAD_REQUEST.code);
+                return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return new RestResponse("00", "OK");
+        return new RestError(ResponseCode.OK);
     }
 
     @GetMapping("expire/key={key}&t={time}")
-    public Serializable expire(@PathVariable String key, @PathVariable String time) {
-        try{
+    public Serializable expire(@PathVariable String key, HttpServletResponse response, @PathVariable String time) {
+        try {
             Long t = Long.parseLong(time);
             for (KeyValue kv : Main.kv) {
                 kv.setKeyExpire(key, t);
             }
         } catch (DatabaseException e) {
-            return new RestError(e.getCode(), e.getMessage());
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST);
         } catch (NumberFormatException e) {
-            return new RestError("05", e.getMessage());
+            response.setStatus(ResponseCode.NOT_MODIFIED.code);
+            return new RestError(ResponseCode.NOT_MODIFIED);
         }
-        return new RestResponse("00", "OK");
+        return new RestError(ResponseCode.OK);
     }
 
     @GetMapping("setex/key={key}&value={value}&t={time}")
-    public Serializable setEx(@PathVariable String key, @PathVariable String value, @PathVariable String time) {
-        try{
+    public Serializable setEx(@PathVariable String key, HttpServletResponse response, @PathVariable String value,
+            @PathVariable String time) {
+        try {
             Long t = Long.parseLong(time);
             for (KeyValue kv : Main.kv) {
-                kv.setWExpire(key,value,t);
+                kv.setWExpire(key, value, t);
             }
         } catch (DatabaseException e) {
-            return new RestError(e.getCode(), e.getMessage());
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST);
         } catch (NumberFormatException e) {
-            return new RestError("05", e.getMessage());
+            response.setStatus(ResponseCode.NOT_MODIFIED.code);
+            return new RestError(ResponseCode.NOT_MODIFIED);
         }
-        return new RestResponse("00", "OK");
+        return new RestError(ResponseCode.OK);
 
     }
 
     @GetMapping("exists/key={key}")
-    public Serializable exists(@PathVariable String key) {
+    public Serializable exists(@PathVariable String key, HttpServletResponse response) {
         ArrayList<Boolean> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
-            try{
+            try {
                 res.add(kv.exists(key));
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.BAD_REQUEST.code);
+                return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
         return res;
     }
 
     @GetMapping("incr/key={key}")
-    public Serializable incr(@PathVariable String key) {
+    public Serializable incr(@PathVariable String key, HttpServletResponse response) {
         ArrayList<Long> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
-            try{
+            try {
                 res.add(kv.incr(key));
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.NOT_MODIFIED.code);
+                return new RestError(ResponseCode.NOT_MODIFIED);
             }
         }
         return res;
     }
 
     @GetMapping("incrby/key={key}&incr={incr}")
-    public Serializable incr(@PathVariable String key, @PathVariable String incr) {
+    public Serializable incr(@PathVariable String key, HttpServletResponse response, @PathVariable String incr) {
         ArrayList<Long> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
-            try{
-                res.add(kv.incrBy(key,Long.parseLong(incr)));
+            try {
+                res.add(kv.incrBy(key, Long.parseLong(incr)));
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.BAD_REQUEST.code);
+                return new RestError(ResponseCode.BAD_REQUEST);
             } catch (NumberFormatException e) {
-                return new RestError("05", e.getMessage());
+                response.setStatus(ResponseCode.NOT_MODIFIED.code);
+                return new RestError(ResponseCode.NOT_MODIFIED);
             }
         }
         return res;
     }
 
-
     @GetMapping("del/key={key}")
-    public Serializable del(@PathVariable String key) {
+    public Serializable del(@PathVariable String key, HttpServletResponse response) {
         for (KeyValue kv : Main.kv) {
-            try{
+            try {
                 kv.delete(key);
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.NOT_MODIFIED.code);
+                return new RestError(ResponseCode.NOT_MODIFIED);
             }
         }
-        return new RestResponse("00", "OK");
+        return new RestError(ResponseCode.OK);
     }
 
     @GetMapping("addMul/key={key}&value={value}")
-    public Serializable addMul(@PathVariable String[] key, @PathVariable String[] value) {
-        //construct a hashmap
+    public Serializable addMul(@PathVariable String[] key, HttpServletResponse response, @PathVariable String[] value) {
+        // construct a hashmap
         if (key.length != value.length) {
-            return new RestError("06", "mismatched array sizes");
+            response.setStatus(ResponseCode.NOT_MODIFIED.code);
+            return new RestError(ResponseCode.NOT_MODIFIED);
         }
         HashMap<String, String> hMap = new HashMap<>();
-        for(int i = 0; i < key.length; i++){
+        for (int i = 0; i < key.length; i++) {
             hMap.put(key[i], value[i]);
         }
 
         for (KeyValue kv : Main.kv) {
-            try{
+            try {
                 kv.addMultiple(hMap);
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.BAD_REQUEST.code);
+                return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return new RestResponse("00", "OK");
+        return new RestError(ResponseCode.OK);
     }
 
     @GetMapping("getMul/key={key}")
-    public Serializable getMultiple(@PathVariable String[] key) {
+    public Serializable getMultiple(@PathVariable String[] key, HttpServletResponse response) {
         ArrayList<String> list = new ArrayList<String>();
         ArrayList<HashMap<String, String>> res = new ArrayList<>();
         for (String s : key) {
             list.add(s);
         }
         for (KeyValue kv : Main.kv) {
-            try{
+            try {
                 res.add(kv.getMultiple(list));
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.BAD_REQUEST.code);
+                return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
         return res;
     }
 
     @GetMapping("/type/key={key}")
-    //returns an arraylist or an error code
-    public Serializable getType(@PathVariable String key) {
+    // returns an arraylist or an error code
+    public Serializable getType(@PathVariable String key, HttpServletResponse response) {
         ArrayList<String> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
-            try{
+            try {
                 res.add(kv.getType(key));
             } catch (DatabaseException e) {
-                return new RestError(e.getCode(), e.getMessage());
+                response.setStatus(ResponseCode.BAD_REQUEST.code);
+                return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
         return res;
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -35,7 +35,7 @@ public class RelationalTests {
         db.setUrl("test1234");
         db.setSupplier("mysql");
         Main.relational.add(rf.parseDB(db));
-		this.mockMvc.perform(get("http://127.0.0.1:8080/rel/select/5/table=test&multiple=test,tests")).andDo(print()).andExpect(status().isOk());
+		this.mockMvc.perform(get("http://127.0.0.1:8080/rel/select/5/table=test&multiple=test,tests")).andDo(print()).andExpect(status().isBadRequest());
 	}
 
     @Test
@@ -46,7 +46,7 @@ public class RelationalTests {
         db.setUrl("test1234");
         db.setSupplier("mysql");
         Main.relational.add(rf.parseDB(db));
-		this.mockMvc.perform(get("http://127.0.0.1:8080/rel/select/table=test&multiple=test,tests")).andDo(print()).andExpect(status().isOk());
+		this.mockMvc.perform(get("http://127.0.0.1:8080/rel/select/table=test&multiple=test,tests")).andDo(print()).andExpect(status().isBadRequest());
 	}
 
     @Test
@@ -62,7 +62,7 @@ public class RelationalTests {
             .content(json)
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
-            .andDo(print()).andExpect(status().isOk());
+            .andDo(print()).andExpect(status().isNotModified());
     }
 
     @Test
@@ -113,6 +113,6 @@ public class RelationalTests {
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://127.0.0.1:8080/rel/insertMany/test").content(json)
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
-            .andDo(print()).andExpect(status().isOk());
+            .andDo(print()).andExpect(status().isNotModified());
     }
 }
