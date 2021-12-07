@@ -29,7 +29,7 @@ public class KeyValueTests {
         Main.kv = new ArrayList<KeyValue>();
         Main.kv.add(new Redis(null));
     
-		this.mockMvc.perform(get("/kv/get/key=test")).andDo(print()).andExpect(status().isBadRequest());
+		this.mockMvc.perform(get("/kv/get/key.test")).andDo(print()).andExpect(status().isBadRequest());
 	}
 
     @Test
@@ -37,7 +37,7 @@ public class KeyValueTests {
         Main.kv = new ArrayList<KeyValue>();
         Main.kv.add(new Redis(null));
 
-		this.mockMvc.perform(get("/kv/0/get/key=test")).andDo(print()).andExpect(status().isBadRequest());
+		this.mockMvc.perform(get("/kv/0/get/key.test")).andDo(print()).andExpect(status().isBadRequest());
 	}
     
 }

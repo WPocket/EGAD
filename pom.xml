@@ -108,6 +108,7 @@
 					<outputFileName>EGAD-Openapi-Docs.yaml</outputFileName>
 					<outputDir>${basedir}</outputDir>
 					<skip>false</skip>
+					<springdoc.api-docs.resolve-schema-properties>true</springdoc.api-docs.resolve-schema-properties>
 				</configuration>
 				<executions>
 				 <execution>

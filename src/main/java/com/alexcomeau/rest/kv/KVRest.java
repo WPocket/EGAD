@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  * KVRest
  */
 public class KVRest {
-    @GetMapping("/get/key={key}")
+    @GetMapping("/get/key.{key}")
     // returns an arraylist or an error code
     public Serializable getKey(@PathVariable String key, HttpServletResponse response) {
         ArrayList<String> res = new ArrayList<>();
@@ -38,7 +38,7 @@ public class KVRest {
         return res;
     }
 
-    @GetMapping("/set/key={key}&value={value}")
+    @GetMapping("/set/key.{key}/value.{value}")
     public Serializable setKey(@PathVariable String key, HttpServletResponse response, @PathVariable String value) {
         for (KeyValue kv : Main.kv) {
             try {
@@ -51,7 +51,7 @@ public class KVRest {
         return new RestError(ResponseCode.OK);
     }
 
-    @GetMapping("expire/key={key}&t={time}")
+    @GetMapping("expire/key.{key}/t.{time}")
     public Serializable expire(@PathVariable String key, HttpServletResponse response, @PathVariable String time) {
         try {
             Long t = Long.parseLong(time);
@@ -68,7 +68,7 @@ public class KVRest {
         return new RestError(ResponseCode.OK);
     }
 
-    @GetMapping("setex/key={key}&value={value}&t={time}")
+    @GetMapping("setex/key.{key}/value.{value}/t.{time}")
     public Serializable setEx(@PathVariable String key, HttpServletResponse response, @PathVariable String value,
             @PathVariable String time) {
         try {
@@ -87,7 +87,7 @@ public class KVRest {
 
     }
 
-    @GetMapping("exists/key={key}")
+    @GetMapping("exists/key.{key}")
     public Serializable exists(@PathVariable String key, HttpServletResponse response) {
         ArrayList<Boolean> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
@@ -101,7 +101,7 @@ public class KVRest {
         return res;
     }
 
-    @GetMapping("incr/key={key}")
+    @GetMapping("incr/key.{key}")
     public Serializable incr(@PathVariable String key, HttpServletResponse response) {
         ArrayList<Long> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
@@ -115,7 +115,7 @@ public class KVRest {
         return res;
     }
 
-    @GetMapping("incrby/key={key}&incr={incr}")
+    @GetMapping("incrby/key.{key}/incr.{incr}")
     public Serializable incr(@PathVariable String key, HttpServletResponse response, @PathVariable String incr) {
         ArrayList<Long> res = new ArrayList<>();
         for (KeyValue kv : Main.kv) {
@@ -132,7 +132,7 @@ public class KVRest {
         return res;
     }
 
-    @GetMapping("del/key={key}")
+    @GetMapping("del/key.{key}")
     public Serializable del(@PathVariable String key, HttpServletResponse response) {
         for (KeyValue kv : Main.kv) {
             try {
@@ -145,7 +145,7 @@ public class KVRest {
         return new RestError(ResponseCode.OK);
     }
 
-    @GetMapping("addMul/key={key}&value={value}")
+    @GetMapping("addMul/key.{key}/value.{value}")
     public Serializable addMul(@PathVariable String[] key, HttpServletResponse response, @PathVariable String[] value) {
         // construct a hashmap
         if (key.length != value.length) {
@@ -168,7 +168,7 @@ public class KVRest {
         return new RestError(ResponseCode.OK);
     }
 
-    @GetMapping("getMul/key={key}")
+    @GetMapping("getMul/key.{key}")
     public Serializable getMultiple(@PathVariable String[] key, HttpServletResponse response) {
         ArrayList<String> list = new ArrayList<String>();
         ArrayList<HashMap<String, String>> res = new ArrayList<>();
@@ -186,7 +186,7 @@ public class KVRest {
         return res;
     }
 
-    @GetMapping("/type/key={key}")
+    @GetMapping("/type/key.{key}")
     // returns an arraylist or an error code
     public Serializable getType(@PathVariable String key, HttpServletResponse response) {
         ArrayList<String> res = new ArrayList<>();

@@ -14,6 +14,7 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
@@ -40,6 +41,7 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
@@ -60,139 +62,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/{max}/table={table}&value={value}:
-    get:
-      tags:
-      - relational-rest
-      operationId: getKeyMax
-      parameters:
-      - name: table
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: value
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: max
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-  /rel/select/{max}/table={table}&value={value}&where={where}:
-    get:
-      tags:
-      - relational-rest
-      operationId: getKeyWhereMax
-      parameters:
-      - name: table
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: value
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: where
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: max
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-  /rel/select/{max}/table={table}&value={value}&offset={offset}:
-    get:
-      tags:
-      - relational-rest
-      operationId: getKeyOffsetMax
-      parameters:
-      - name: table
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: value
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: offset
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: max
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-  /rel/select/{max}/table={table}&value={value}&offset={offset}&where={where}:
-    get:
-      tags:
-      - relational-rest
-      operationId: getKeyOffsetWhereMax
-      parameters:
-      - name: table
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: value
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: offset
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: where
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: max
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-  /rel/select/{max}/table={table}&multiple={value}:
+  /rel/select/{max}/table.{table}/columns.{columns}:
     get:
       tags:
       - relational-rest
@@ -200,11 +70,13 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: columns
         in: path
+        description: array of columns to get
         required: true
         schema:
           type: array
@@ -212,6 +84,7 @@ paths:
             type: string
       - name: max
         in: path
+        description: max number of variables to get
         required: true
         schema:
           type: string
@@ -222,7 +95,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/{max}/table={table}&multiple={value}&where={where}:
+  /rel/select/{max}/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
       - relational-rest
@@ -230,11 +103,13 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: columns
         in: path
+        description: array of columns to get
         required: true
         schema:
           type: array
@@ -242,11 +117,13 @@ paths:
             type: string
       - name: where
         in: path
+        description: "sql where condition \n ex: \"COLUMN = 0\""
         required: true
         schema:
           type: string
       - name: max
         in: path
+        description: max number of variables to get
         required: true
         schema:
           type: string
@@ -257,7 +134,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/{max}/table={table}&multiple={value}&offset={offset}:
+  /rel/select/{max}/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
       - relational-rest
@@ -265,11 +142,13 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: columns
         in: path
+        description: array of columns to get
         required: true
         schema:
           type: array
@@ -277,11 +156,13 @@ paths:
             type: string
       - name: offset
         in: path
+        description: sql OFFSET
         required: true
         schema:
           type: string
       - name: max
         in: path
+        description: max number of variables to get
         required: true
         schema:
           type: string
@@ -292,7 +173,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/{max}/table={table}&multiple={value}&offset={offset}&where={where}:
+  /rel/select/{max}/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
       - relational-rest
@@ -300,11 +181,13 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: columns
         in: path
+        description: array of columns to get
         required: true
         schema:
           type: array
@@ -312,16 +195,19 @@ paths:
             type: string
       - name: offset
         in: path
+        description: sql OFFSET
         required: true
         schema:
           type: string
       - name: where
         in: path
+        description: "sql where condition \n ex: \"COLUMN = 0\""
         required: true
         schema:
           type: string
       - name: max
         in: path
+        description: max number of variables to get
         required: true
         schema:
           type: string
@@ -332,19 +218,27 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/table={table}&value={value}:
+  /rel/select/{max}/table.{table}/column.{column}:
     get:
       tags:
       - relational-rest
-      operationId: getKey
+      operationId: getKeyMax
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: column
         in: path
+        description: column name
+        required: true
+        schema:
+          type: string
+      - name: max
+        in: path
+        description: max number of variables to get
         required: true
         schema:
           type: string
@@ -355,24 +249,33 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/table={table}&value={value}&where={where}:
+  /rel/select/{max}/table.{table}/column.{column}/where.{where}:
     get:
       tags:
       - relational-rest
-      operationId: getKeyWhere
+      operationId: getKeyWhereMax
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: column
         in: path
+        description: column name
         required: true
         schema:
           type: string
       - name: where
         in: path
+        description: "sql where condition \n ex: \"COLUMN = 0\""
+        required: true
+        schema:
+          type: string
+      - name: max
+        in: path
+        description: max number of variables to get
         required: true
         schema:
           type: string
@@ -383,24 +286,33 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/table={table}&value={value}&offset={offset}:
+  /rel/select/{max}/table.{table}/column.{column}/offset.{offset}:
     get:
       tags:
       - relational-rest
-      operationId: getKeyOffset
+      operationId: getKeyOffsetMax
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: column
         in: path
+        description: column name
         required: true
         schema:
           type: string
       - name: offset
         in: path
+        description: sql OFFSET
+        required: true
+        schema:
+          type: string
+      - name: max
+        in: path
+        description: max number of variables to get
         required: true
         schema:
           type: string
@@ -411,29 +323,39 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/table={table}&value={value}&offset={offset}&where={where}:
+  /rel/select/{max}/table.{table}/column.{column}/offset.{offset}/where.where.{where}:
     get:
       tags:
       - relational-rest
-      operationId: getKeyOffsetWhere
+      operationId: getKeyOffsetWhereMax
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: column
         in: path
+        description: column name
         required: true
         schema:
           type: string
       - name: offset
         in: path
+        description: sql OFFSET
         required: true
         schema:
           type: string
       - name: where
         in: path
+        description: "sql where condition \n ex: \"COLUMN = 0\""
+        required: true
+        schema:
+          type: string
+      - name: max
+        in: path
+        description: max number of variables to get
         required: true
         schema:
           type: string
@@ -444,7 +366,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/table={table}&multiple={value}:
+  /rel/select/table.{table}/columns.{columns}:
     get:
       tags:
       - relational-rest
@@ -452,11 +374,13 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: columns
         in: path
+        description: array of columns to get
         required: true
         schema:
           type: array
@@ -469,7 +393,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/table={table}&multiple={value}&where={where}:
+  /rel/select/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
       - relational-rest
@@ -477,11 +401,13 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: columns
         in: path
+        description: array of columns to get
         required: true
         schema:
           type: array
@@ -489,6 +415,7 @@ paths:
             type: string
       - name: where
         in: path
+        description: "sql where condition \n ex: \"COLUMN = 0\""
         required: true
         schema:
           type: string
@@ -499,7 +426,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/table={table}&multiple={value}&offset={offset}:
+  /rel/select/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
       - relational-rest
@@ -507,11 +434,13 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: columns
         in: path
+        description: array of columns to get
         required: true
         schema:
           type: array
@@ -519,6 +448,7 @@ paths:
             type: string
       - name: offset
         in: path
+        description: sql OFFSET
         required: true
         schema:
           type: string
@@ -529,7 +459,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /rel/select/table={table}&multiple={value}&offset={offset}&where={where}:
+  /rel/select/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
       - relational-rest
@@ -537,11 +467,13 @@ paths:
       parameters:
       - name: table
         in: path
+        description: sql table name
         required: true
         schema:
           type: string
-      - name: value
+      - name: columns
         in: path
+        description: array of columns to get
         required: true
         schema:
           type: array
@@ -549,11 +481,13 @@ paths:
             type: string
       - name: offset
         in: path
+        description: sql OFFSET
         required: true
         schema:
           type: string
       - name: where
         in: path
+        description: "sql where condition \n ex: \"COLUMN = 0\""
         required: true
         schema:
           type: string
@@ -564,7 +498,147 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/type/key={key}:
+  /rel/select/table.{table}/column.{column}:
+    get:
+      tags:
+      - relational-rest
+      summary: "select from table table.{table} the value in column column.{column}\
+        \ in the first row"
+      operationId: getKey
+      parameters:
+      - name: table
+        in: path
+        description: sql table name
+        required: true
+        schema:
+          type: string
+      - name: column
+        in: path
+        description: column name
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: "table, value, and row exist"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelationalReturnList'
+  /rel/select/table.{table}/column.{column}/where.{where}:
+    get:
+      tags:
+      - relational-rest
+      summary: "select from table table.{table} the value in column column.{column}\
+        \ in the first row with the sql option where.{where}"
+      operationId: getKeyWhere
+      parameters:
+      - name: table
+        in: path
+        description: sql table name
+        required: true
+        schema:
+          type: string
+      - name: column
+        in: path
+        description: column name
+        required: true
+        schema:
+          type: string
+      - name: where
+        in: path
+        description: "sql where condition \n ex: \"COLUMN = 0\""
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: "table, value, and row exist"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelationalReturnList'
+  /rel/select/table.{table}/column.{column}/offset.{offset}:
+    get:
+      tags:
+      - relational-rest
+      operationId: getKeyOffset
+      parameters:
+      - name: table
+        in: path
+        description: sql table name
+        required: true
+        schema:
+          type: string
+      - name: column
+        in: path
+        description: column name
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: path
+        description: sql OFFSET
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /rel/select/table.{table}/column.{column}/offset.{offset}/where.{where}:
+    get:
+      tags:
+      - relational-rest
+      operationId: getKeyOffsetWhere
+      parameters:
+      - name: table
+        in: path
+        description: sql table name
+        required: true
+        schema:
+          type: string
+      - name: column
+        in: path
+        description: column name
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: path
+        description: sql OFFSET
+        required: true
+        schema:
+          type: string
+      - name: where
+        in: path
+        description: "sql where condition \n ex: \"COLUMN = 0\""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /kv/{index}/type/key.{key}:
     get:
       tags:
       - kv-rest-index
@@ -587,7 +661,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/setex/key={key}&value={value}&t={time}:
+  /kv/{index}/setex/key.{key}/value.{value}/t.{time}:
     get:
       tags:
       - kv-rest-index
@@ -620,7 +694,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/set/key={key}&value={value}:
+  /kv/{index}/set/key.{key}/value.{value}:
     get:
       tags:
       - kv-rest-index
@@ -648,7 +722,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/incrby/key={key}&incr={incr}:
+  /kv/{index}/incrby/key.{key}/incr.{incr}:
     get:
       tags:
       - kv-rest-index
@@ -676,7 +750,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/incr/key={key}:
+  /kv/{index}/incr/key.{key}:
     get:
       tags:
       - kv-rest-index
@@ -699,7 +773,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/getMul/key={key}:
+  /kv/{index}/getMul/key.{key}:
     get:
       tags:
       - kv-rest-index
@@ -724,7 +798,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/get/key={key}:
+  /kv/{index}/get/key.{key}:
     get:
       tags:
       - kv-rest-index
@@ -747,7 +821,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/expire/key={key}&t={time}:
+  /kv/{index}/expire/key.{key}/t.{time}:
     get:
       tags:
       - kv-rest-index
@@ -775,7 +849,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/exists/key={key}:
+  /kv/{index}/exists/key.{key}:
     get:
       tags:
       - kv-rest-index
@@ -798,7 +872,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/del/key={key}:
+  /kv/{index}/del/key.{key}:
     get:
       tags:
       - kv-rest-index
@@ -821,7 +895,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/{index}/addMul/key={key}&value={value}:
+  /kv/{index}/addMul/key.{key}/value.{value}:
     get:
       tags:
       - kv-rest-index
@@ -853,7 +927,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/type/key={key}:
+  /kv/type/key.{key}:
     get:
       tags:
       - kv-rest
@@ -871,7 +945,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/setex/key={key}&value={value}&t={time}:
+  /kv/setex/key.{key}/value.{value}/t.{time}:
     get:
       tags:
       - kv-rest
@@ -899,7 +973,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/set/key={key}&value={value}:
+  /kv/set/key.{key}/value.{value}:
     get:
       tags:
       - kv-rest
@@ -922,7 +996,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/incrby/key={key}&incr={incr}:
+  /kv/incrby/key.{key}/incr.{incr}:
     get:
       tags:
       - kv-rest
@@ -945,7 +1019,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/incr/key={key}:
+  /kv/incr/key.{key}:
     get:
       tags:
       - kv-rest
@@ -963,7 +1037,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/getMul/key={key}:
+  /kv/getMul/key.{key}:
     get:
       tags:
       - kv-rest
@@ -983,7 +1057,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/get/key={key}:
+  /kv/get/key.{key}:
     get:
       tags:
       - kv-rest
@@ -1001,7 +1075,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/expire/key={key}&t={time}:
+  /kv/expire/key.{key}/t.{time}:
     get:
       tags:
       - kv-rest
@@ -1024,7 +1098,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/exists/key={key}:
+  /kv/exists/key.{key}:
     get:
       tags:
       - kv-rest
@@ -1042,7 +1116,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/del/key={key}:
+  /kv/del/key.{key}:
     get:
       tags:
       - kv-rest
@@ -1060,7 +1134,7 @@ paths:
             '*/*':
               schema:
                 type: object
-  /kv/addMul/key={key}&value={value}:
+  /kv/addMul/key.{key}/value.{value}:
     get:
       tags:
       - kv-rest
@@ -1115,6 +1189,47 @@ components:
           type: string
         value:
           type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        rc:
+          type: string
+          enum:
+          - OK
+          - CREATED
+          - ACCEPTED
+          - NO_CONTENT
+          - NOT_MODIFIED
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - TOO_MANY_REQUESTS
+          - SERVICE_UNAVAILABLE
+        responseCode:
+          type: string
+          enum:
+          - OK
+          - CREATED
+          - ACCEPTED
+          - NO_CONTENT
+          - NOT_MODIFIED
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - TOO_MANY_REQUESTS
+          - SERVICE_UNAVAILABLE
+    RelationalReturnList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: string
     Greeting:
       type: object
       properties:

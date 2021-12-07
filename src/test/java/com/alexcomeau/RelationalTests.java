@@ -35,7 +35,7 @@ public class RelationalTests {
         db.setUrl("test1234");
         db.setSupplier("mysql");
         Main.relational.add(rf.parseDB(db));
-		this.mockMvc.perform(get("http://127.0.0.1:8080/rel/select/5/table=test&multiple=test,tests")).andDo(print()).andExpect(status().isBadRequest());
+		this.mockMvc.perform(get("http://127.0.0.1:8080/rel/select/5/table.test/columns.test,tests")).andDo(print()).andExpect(status().isBadRequest());
 	}
 
     @Test
@@ -46,7 +46,7 @@ public class RelationalTests {
         db.setUrl("test1234");
         db.setSupplier("mysql");
         Main.relational.add(rf.parseDB(db));
-		this.mockMvc.perform(get("http://127.0.0.1:8080/rel/select/table=test&multiple=test,tests")).andDo(print()).andExpect(status().isBadRequest());
+		this.mockMvc.perform(get("http://127.0.0.1:8080/rel/select/table.test/columns.test,tests")).andDo(print()).andExpect(status().isBadRequest());
 	}
 
     @Test
