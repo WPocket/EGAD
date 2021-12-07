@@ -11,6 +11,10 @@ import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.relational.Relational;
 import com.alexcomeau.rest.RestError;
 import com.alexcomeau.rest.relational.objects.EntryPair;
+import com.alexcomeau.rest.relational.objects.relationalreturns.RelationalReturnList;
+import com.alexcomeau.rest.relational.objects.relationalreturns.RelationalReturnList2D;
+import com.alexcomeau.rest.relational.objects.relationalreturns.RelationalReturnList2DTable;
+import com.alexcomeau.rest.relational.objects.relationalreturns.RelationalReturnListTable;
 import com.alexcomeau.utils.Common;
 import com.alexcomeau.utils.ResponseCode;
 
@@ -40,7 +44,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList().setData(al);
     }
 
     @GetMapping("/select/table={table}&value={value}&where={where}")
@@ -54,7 +58,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList().setData(al);
     }
     @GetMapping("/select/table={table}&value={value}&offset={offset}")
     public Serializable getKeyOffset(@PathVariable String table, HttpServletResponse response, @PathVariable String value, @PathVariable String offset) {
@@ -70,7 +74,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList().setData(al);
     }
 
     @GetMapping("/select/table={table}&value={value}&offset={offset}&where={where}")
@@ -88,7 +92,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList().setData(al);
     }
 
     @GetMapping("/select/table={table}&multiple={value}")
@@ -109,7 +113,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnListTable().setData(al);
     }
 
     @GetMapping("/select/table={table}&multiple={value}&where={where}")
@@ -130,7 +134,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnListTable().setData(al);
     }
 
     @GetMapping("/select/table={table}&multiple={value}&offset={offset}&where={where}")
@@ -152,7 +156,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnListTable().setData(al);
     }
     @GetMapping("/select/table={table}&multiple={value}&offset={offset}")
     public Serializable getMultipleOffset(@PathVariable String table, HttpServletResponse response,@PathVariable String[] value,
@@ -173,7 +177,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnListTable().setData(al);
     }
 
     // MAX
@@ -193,7 +197,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList2D().setData(al);
     }
 
     @GetMapping("/select/{max}/table={table}&value={value}&where={where}")
@@ -211,7 +215,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList2D().setData(al);
     }
     @GetMapping("/select/{max}/table={table}&value={value}&offset={offset}")
     public Serializable getKeyOffsetMax(@PathVariable String table, HttpServletResponse response,@PathVariable String value, @PathVariable String offset, @PathVariable String max) {
@@ -228,7 +232,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList2D().setData(al);
     }
 
     @GetMapping("/select/{max}/table={table}&value={value}&offset={offset}&where={where}")
@@ -247,7 +251,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList2D().setData(al);
     }
 
     @GetMapping("/select/{max}/table={table}&multiple={value}")
@@ -269,7 +273,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList2DTable().setData(al);
     }
 
     @GetMapping("/select/{max}/table={table}&multiple={value}&where={where}")
@@ -291,7 +295,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList2DTable().setData(al);
     }
 
     @GetMapping("/select/{max}/table={table}&multiple={value}&offset={offset}&where={where}")
@@ -314,7 +318,7 @@ public class RelationalRest {
                 return new RestError(ResponseCode.BAD_REQUEST);
             }
         }
-        return al;
+        return new RelationalReturnList2DTable().setData(al);
     }
     @GetMapping("/select/{max}/table={table}&multiple={value}&offset={offset}")
     public Serializable getMultipleOffset(@PathVariable String table, HttpServletResponse response,@PathVariable String[] value,
