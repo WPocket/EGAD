@@ -364,7 +364,7 @@ public class RelationalRest {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = List2D.class)) }),
         @ApiResponse(responseCode = "400", description = "bad request", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = RestError.class)) }) })
-    @GetMapping("/select/{max}/table.{table}/column.{column}/offset.{offset}/where.where.{where}")
+    @GetMapping("/select/{max}/table.{table}/column.{column}/offset.{offset}/where.{where}")
     public Serializable getKeyOffsetWhereMax(
             @Parameter(description = "sql table name", required = true) @PathVariable String table,
             HttpServletResponse response,
