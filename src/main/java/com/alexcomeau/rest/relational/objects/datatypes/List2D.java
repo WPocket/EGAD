@@ -1,16 +1,16 @@
-package com.alexcomeau.rest.relational.objects.relationalreturns;
+package com.alexcomeau.rest.relational.objects.datatypes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RelationalReturnList2D implements Serializable{
+public class List2D implements Serializable{
     private ArrayList<ArrayList<String>> data = null;
 
     public ArrayList<ArrayList<String>> getData() {
         return this.data;
     }
 
-    public RelationalReturnList2D setData(ArrayList<ArrayList<String>> list2d) {
+    public List2D setData(ArrayList<ArrayList<String>> list2d) {
         this.data = list2d;
         return this;
     }

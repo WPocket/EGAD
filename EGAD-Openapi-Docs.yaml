@@ -10,6 +10,7 @@ paths:
     post:
       tags:
       - relational-rest
+      summary: insert a single row into table table
       operationId: insertOne
       parameters:
       - name: table
@@ -22,21 +23,26 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/EntryPair'
+              $ref: '#/components/schemas/ListPair'
         required: true
       responses:
         "200":
-          description: OK
+          description: row inserted successfully
           content:
             '*/*':
               schema:
                 type: object
+        "304":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/insertMany/{table}:
     post:
       tags:
       - relational-rest
+      summary: insert a single row into table table
       operationId: insertMany
       parameters:
       - name: table
@@ -49,15 +55,17 @@ paths:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EntryPair'
+              $ref: '#/components/schemas/ListTable'
         required: true
       responses:
+        "304":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         "200":
-          description: OK
+          description: rows inserted successfully
           content:
             '*/*':
               schema:
@@ -66,6 +74,8 @@ paths:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table}  the value in multiple columns {columns}(comma\
+        \ separated) starting at the top, select {max} rows"
       operationId: getMultipleMax
       parameters:
       - name: table
@@ -90,15 +100,24 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/List2DTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table}  the value in multiple columns {columns}(comma\
+        \ separated) starting at the top, with the sql option/s where.{where}, select\
+        \ {max} rows"
       operationId: getMultipleWhere
       parameters:
       - name: table
@@ -129,15 +148,24 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/List2DTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table}  the value in multiple columns {columns}(comma\
+        \ separated) in the row in position offset {offset}, select {max} rows, if\
+        \ offset does not exist then it returns nothing"
       operationId: getMultipleOffset
       parameters:
       - name: table
@@ -168,15 +196,25 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/List2DTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table}  the value in multiple columns {columns}(comma\
+        \ separated) in the row in position offset {offset} with the sql option/s\
+        \ where.{where}, select {max} rows, if offset does not exist then it returns\
+        \ nothing"
       operationId: getMultipleWhereOffset
       parameters:
       - name: table
@@ -222,6 +260,8 @@ paths:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in column {column} in starting\
+        \ at the top, select {max} rows"
       operationId: getKeyMax
       parameters:
       - name: table
@@ -244,15 +284,23 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/List2D'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/column.{column}/where.{where}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in column {column} starting\
+        \ at the top with the sql option/s where.{where}, select {max} rows"
       operationId: getKeyWhereMax
       parameters:
       - name: table
@@ -281,15 +329,24 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/List2D'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/column.{column}/offset.{offset}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in column {column} in the\
+        \ row in position offset {offset}, select {max} rows, if offset does not exist\
+        \ then it returns nothing"
       operationId: getKeyOffsetMax
       parameters:
       - name: table
@@ -318,15 +375,24 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/List2D'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/column.{column}/offset.{offset}/where.where.{where}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in column {column} in the\
+        \ row in position offset {offset} with the sql option/s where.{where}, select\
+        \ {max} rows, if offset does not exist then it returns nothing"
       operationId: getKeyOffsetWhereMax
       parameters:
       - name: table
@@ -361,15 +427,23 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/List2D'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in multiple columns {columns}(comma\
+        \ separated)"
       operationId: getMultiple
       parameters:
       - name: table
@@ -388,15 +462,23 @@ paths:
             type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in multiple columns {columns}(comma\
+        \ separated)with the sql option/s where.{where}"
       operationId: getMultipleWhere_1
       parameters:
       - name: table
@@ -421,15 +503,24 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in multiple columns {columns}(comma\
+        \ separated) in the row in position offset, if offset does not exist then\
+        \ it returns nothing"
       operationId: getMultipleOffset_1
       parameters:
       - name: table
@@ -454,15 +545,24 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in multiple columns {columns}(comma\
+        \ separated) in the row in position offset {offset} with the sql option/s\
+        \ where.{where}, if offset does not exist then it returns nothing"
       operationId: getMultipleWhereOffset_1
       parameters:
       - name: table
@@ -493,11 +593,17 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/column.{column}:
     get:
       tags:
@@ -519,24 +625,24 @@ paths:
         schema:
           type: string
       responses:
+        "200":
+          description: "table, value, and row exist"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListString'
         "400":
           description: bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: "table, value, and row exist"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RelationalReturnList'
   /rel/select/table.{table}/column.{column}/where.{where}:
     get:
       tags:
       - relational-rest
       summary: "select from table table.{table} the value in column column.{column}\
-        \ in the first row with the sql option where.{where}"
+        \ in the first row with the sql option/s where.{where}"
       operationId: getKeyWhere
       parameters:
       - name: table
@@ -558,22 +664,25 @@ paths:
         schema:
           type: string
       responses:
+        "200":
+          description: "table, value, and row exist"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListString'
         "400":
           description: bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: "table, value, and row exist"
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RelationalReturnList'
   /rel/select/table.{table}/column.{column}/offset.{offset}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in column column.{column}\
+        \ in the row in position offset, if offset does not exist then it returns\
+        \ nothing "
       operationId: getKeyOffset
       parameters:
       - name: table
@@ -596,15 +705,24 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ListString'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/column.{column}/offset.{offset}/where.{where}:
     get:
       tags:
       - relational-rest
+      summary: "select from table table.{table} the value in column column.{column}\
+        \ in the row in position offset {offset} with the sql option/s where.{where},\
+        \ if offset does not exist then it returns nothing"
       operationId: getKeyOffsetWhere
       parameters:
       - name: table
@@ -633,11 +751,17 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: "table, value, and row exist"
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ListString'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/type/key.{key}:
     get:
       tags:
@@ -1182,12 +1306,23 @@ paths:
                 $ref: '#/components/schemas/Greeting'
 components:
   schemas:
-    EntryPair:
+    ListPair:
       type: object
       properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PairStringString'
+    PairStringString:
+      type: object
+      properties:
+        value:
+          type: string
         key:
           type: string
-        value:
+        right:
+          type: string
+        left:
           type: string
     Error:
       type: object
@@ -1223,7 +1358,36 @@ components:
           - NOT_FOUND
           - TOO_MANY_REQUESTS
           - SERVICE_UNAVAILABLE
-    RelationalReturnList:
+    ListTable:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    List2DTable:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: array
+            items:
+              type: object
+              additionalProperties:
+                type: string
+    List2D:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+    ListString:
       type: object
       properties:
         data:
