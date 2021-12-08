@@ -1,4 +1,4 @@
-package com.alexcomeau.rest.relational.objects.datatypes;
+package com.alexcomeau.rest.datatypes;
 
 import java.io.Serializable;
 

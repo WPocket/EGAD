@@ -187,18 +187,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/{max}/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
@@ -242,18 +242,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/{max}/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
@@ -298,18 +298,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/{max}/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
@@ -608,18 +608,18 @@ paths:
           items:
             type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Table'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
@@ -657,18 +657,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Table'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
@@ -706,18 +706,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Table'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
@@ -762,18 +762,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Table'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/table.{table}/column.{column}:
     get:
       tags:
@@ -990,18 +990,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/List2DTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
@@ -1038,18 +1038,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/List2DTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
@@ -1086,18 +1086,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/List2DTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
@@ -1352,18 +1352,18 @@ paths:
           items:
             type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
@@ -1393,18 +1393,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
@@ -1435,18 +1435,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
@@ -1483,18 +1483,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/column.{column}:
     get:
       tags:
@@ -1657,6 +1657,7 @@ paths:
     get:
       tags:
       - kv-rest-index
+      summary: "get the type of key {key} from database in index {index}"
       operationId: getType
       parameters:
       - name: index
@@ -1670,16 +1671,30 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringData'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/setex/key.{key}/value.{value}/t.{time}:
     get:
       tags:
       - kv-rest-index
+      summary: "Set key {key} to hold the string value {value} and set key to timeout\
+        \ after a given number of seconds {t}"
       operationId: setEx
       parameters:
       - name: index
@@ -1703,16 +1718,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/set/key.{key}/value.{value}:
     get:
       tags:
       - kv-rest-index
+      summary: "Set key {key} to have value {value}"
       operationId: setKey
       parameters:
       - name: index
@@ -1731,16 +1759,30 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/incrby/key.{key}/incr.{incr}:
     get:
       tags:
       - kv-rest-index
+      summary: "in the key value database in the index {index}, increment key {key}\
+        \ by increment amount {inc}"
       operationId: incr
       parameters:
       - name: index
@@ -1759,16 +1801,30 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LongData'
   /kv/{index}/incr/key.{key}:
     get:
       tags:
       - kv-rest-index
+      summary: "in the key value database in the index {index}, increment key {key}\
+        \ by 1"
       operationId: incr_1
       parameters:
       - name: index
@@ -1782,16 +1838,30 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LongData'
   /kv/{index}/getMul/key.{key}:
     get:
       tags:
       - kv-rest-index
+      summary: "get multiple keys {key} (comma separated list) from database in index\
+        \ {index}"
       operationId: getMultiple_2
       parameters:
       - name: index
@@ -1808,15 +1878,28 @@ paths:
             type: string
       responses:
         "200":
-          description: OK
+          description: executed successfully
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Table'
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/get/key.{key}:
     get:
       tags:
       - kv-rest-index
+      summary: "get key {key}"
       operationId: getKey_2
       parameters:
       - name: index
@@ -1830,16 +1913,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringData'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/expire/key.{key}/t.{time}:
     get:
       tags:
       - kv-rest-index
+      summary: "Set key {key} to timeout after a given number of seconds {t}"
       operationId: expire
       parameters:
       - name: index
@@ -1858,16 +1954,30 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/exists/key.{key}:
     get:
       tags:
       - kv-rest-index
+      summary: "in the key value database in the index {index}, increment key {key}\
+        \ by 1"
       operationId: exists
       parameters:
       - name: index
@@ -1881,16 +1991,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoolData'
   /kv/{index}/del/key.{key}:
     get:
       tags:
       - kv-rest-index
+      summary: "delete key {key} in database with index {index}"
       operationId: del
       parameters:
       - name: index
@@ -1904,16 +2027,30 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/addMul/key.{key}/value.{value}:
     get:
       tags:
       - kv-rest-index
+      summary: "add multiple keys {key} (comma separated list) with values {value}\
+        \ (comma separated list) to database in position {index}"
       operationId: addMul
       parameters:
       - name: index
@@ -1936,16 +2073,29 @@ paths:
           items:
             type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/type/key.{key}:
     get:
       tags:
       - kv-rest
+      summary: "get the type of key {key} from all databases"
       operationId: getType_1
       parameters:
       - name: key
@@ -1955,15 +2105,29 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: executed successfully
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ListString'
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/setex/key.{key}/value.{value}/t.{time}:
     get:
       tags:
       - kv-rest
+      summary: "Set key {key} to hold the string value {value} and set key to timeout\
+        \ after a given number of seconds {t} in every database"
       operationId: setEx_1
       parameters:
       - name: key
@@ -1982,16 +2146,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/set/key.{key}/value.{value}:
     get:
       tags:
       - kv-rest
+      summary: "set key {key} to value {value} in every database"
       operationId: setKey_1
       parameters:
       - name: key
@@ -2005,16 +2182,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/incrby/key.{key}/incr.{incr}:
     get:
       tags:
       - kv-rest
+      summary: "increment key {key} by increment amount {inc} in all databases"
       operationId: incr_2
       parameters:
       - name: key
@@ -2028,16 +2218,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLong'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/incr/key.{key}:
     get:
       tags:
       - kv-rest
+      summary: "increment key {key} in all databases"
       operationId: incr_3
       parameters:
       - name: key
@@ -2046,16 +2249,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLong'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/getMul/key.{key}:
     get:
       tags:
       - kv-rest
+      summary: "get multiple keys {key} (comma separated list) from all databases"
       operationId: getMultiple_3
       parameters:
       - name: key
@@ -2066,16 +2282,29 @@ paths:
           items:
             type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTable'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/get/key.{key}:
     get:
       tags:
       - kv-rest
+      summary: "get key {key} from every database"
       operationId: getKey_3
       parameters:
       - name: key
@@ -2085,15 +2314,28 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: executed successfully
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ListString'
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/expire/key.{key}/t.{time}:
     get:
       tags:
       - kv-rest
+      summary: "set key {key} to expire after time {t} seconds in every database"
       operationId: expire_1
       parameters:
       - name: key
@@ -2107,16 +2349,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/exists/key.{key}:
     get:
       tags:
       - kv-rest
+      summary: "does key {key} exist in every database"
       operationId: exists_1
       parameters:
       - name: key
@@ -2125,16 +2380,29 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBool'
   /kv/del/key.{key}:
     get:
       tags:
       - kv-rest
+      summary: "delete key {key} in all databases"
       operationId: del_1
       parameters:
       - name: key
@@ -2143,16 +2411,30 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/addMul/key.{key}/value.{value}:
     get:
       tags:
       - kv-rest
+      summary: "add multiple keys {key} (comma separated list) with values {value}\
+        \ (comma separated list) to all databases"
       operationId: addMul_1
       parameters:
       - name: key
@@ -2170,12 +2452,24 @@ paths:
           items:
             type: string
       responses:
-        "200":
-          description: OK
+        "404":
+          description: not found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "304":
+          description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /greeting:
     get:
       tags:
@@ -2297,6 +2591,32 @@ components:
             type: array
             items:
               type: string
+    LongData:
+      type: object
+      properties:
+        data:
+          type: integer
+          format: int64
+    BoolData:
+      type: object
+      properties:
+        data:
+          type: boolean
+    ListLong:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: integer
+            format: int64
+    ListBool:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: boolean
     Greeting:
       type: object
       properties:

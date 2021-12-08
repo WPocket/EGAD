@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.alexcomeau.Main;
 import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.rest.RestError;
+import com.alexcomeau.rest.datatypes.ListPair;
+import com.alexcomeau.rest.datatypes.ListString;
+import com.alexcomeau.rest.datatypes.ListTable;
+import com.alexcomeau.rest.datatypes.ReturnData;
+import com.alexcomeau.rest.datatypes.StringData;
+import com.alexcomeau.rest.datatypes.Table;
 import com.alexcomeau.rest.relational.objects.EntryPair;
-import com.alexcomeau.rest.relational.objects.RelationalReturn;
-import com.alexcomeau.rest.relational.objects.datatypes.StringData;
-import com.alexcomeau.rest.relational.objects.datatypes.ListString;
-import com.alexcomeau.rest.relational.objects.datatypes.ListTable;
-import com.alexcomeau.rest.relational.objects.datatypes.ListPair;
-import com.alexcomeau.rest.relational.objects.datatypes.Table;
 import com.alexcomeau.utils.Common;
 import com.alexcomeau.utils.ResponseCode;
 
@@ -62,7 +62,7 @@ public class RelationalRestIndex {
 
             return new RestError(ResponseCode.BAD_REQUEST);
         }
-        return new RelationalReturn<String>().setData(res);
+        return new ReturnData<String>().setData(res);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in column column.{column} in the first row with the sql option/s where.{where}")
@@ -87,7 +87,7 @@ public class RelationalRestIndex {
 
             return new RestError(ResponseCode.BAD_REQUEST);
         }
-        return new RelationalReturn<String>().setData(res);
+        return new ReturnData<String>().setData(res);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in column column.{column} in the row in position offset, if offset does not exist then it returns nothing ")
@@ -115,7 +115,7 @@ public class RelationalRestIndex {
 
             return new RestError(ResponseCode.BAD_REQUEST);
         }
-        return new RelationalReturn<String>().setData(res);
+        return new ReturnData<String>().setData(res);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in column column.{column} in the row in position offset {offset} with the sql option/s where.{where}, if offset does not exist then it returns nothing")
@@ -144,7 +144,7 @@ public class RelationalRestIndex {
 
             return new RestError(ResponseCode.BAD_REQUEST);
         }
-        return new RelationalReturn<String>().setData(res);
+        return new ReturnData<String>().setData(res);
     }
     // @Operation(summary = "from database at index {index}, select from table
     // table.{table} the value in multiple columns {columns}(comma separated) in the
@@ -178,7 +178,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<HashMap<String, String>>().setData(hmap);
+        return new ReturnData<HashMap<String, String>>().setData(hmap);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in multiple columns {columns}(comma separated)with the sql option/s where.{where}")
@@ -208,7 +208,7 @@ public class RelationalRestIndex {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
             return new RestError(ResponseCode.BAD_REQUEST);
         }
-        return new RelationalReturn<HashMap<String, String>>().setData(hmap);
+        return new ReturnData<HashMap<String, String>>().setData(hmap);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in multiple columns {columns}(comma separated) in the row in position offset {offset} with the sql option/s where.{where}, if offset does not exist then it returns nothing")
@@ -240,7 +240,7 @@ public class RelationalRestIndex {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
             return new RestError(ResponseCode.BAD_REQUEST);
         }
-        return new RelationalReturn<HashMap<String, String>>().setData(hmap);
+        return new ReturnData<HashMap<String, String>>().setData(hmap);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in multiple columns {columns}(comma separated) in the row in position offset, if offset does not exist then it returns nothing")
@@ -270,7 +270,7 @@ public class RelationalRestIndex {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
             return new RestError(ResponseCode.BAD_REQUEST);
         }
-        return new RelationalReturn<HashMap<String, String>>().setData(hmap);
+        return new ReturnData<HashMap<String, String>>().setData(hmap);
     }
 
     // MAX
@@ -304,7 +304,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<ArrayList<String>>().setData(al);
+        return new ReturnData<ArrayList<String>>().setData(al);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in column {column} starting at the top with the sql option/s where.{where}, select {max} rows")
@@ -333,7 +333,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<ArrayList<String>>().setData(al);
+        return new ReturnData<ArrayList<String>>().setData(al);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in column {column} in the row in position offset {offset}, select {max} rows, if offset does not exist then it returns nothing")
@@ -362,7 +362,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<ArrayList<String>>().setData(al);
+        return new ReturnData<ArrayList<String>>().setData(al);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table} the value in column {column} in the row in position offset {offset} with the sql option/s where.{where}, select {max} rows, if offset does not exist then it returns nothing")
@@ -392,7 +392,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<ArrayList<String>>().setData(al);
+        return new ReturnData<ArrayList<String>>().setData(al);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table}  the value in multiple columns {columns}(comma separated) starting at the top, select {max} rows")
@@ -425,7 +425,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<ArrayList<HashMap<String, String>>>().setData(al);
+        return new ReturnData<ArrayList<HashMap<String, String>>>().setData(al);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table}  the value in multiple columns {columns}(comma separated) starting at the top, with the sql option/s where.{where}, select {max} rows")
@@ -459,7 +459,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<ArrayList<HashMap<String, String>>>().setData(al);
+        return new ReturnData<ArrayList<HashMap<String, String>>>().setData(al);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table}  the value in multiple columns {columns}(comma separated) in the row in position offset {offset} with the sql option/s where.{where}, select {max} rows, if offset does not exist then it returns nothing")
@@ -490,7 +490,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<ArrayList<HashMap<String, String>>>().setData(al);
+        return new ReturnData<ArrayList<HashMap<String, String>>>().setData(al);
     }
 
     @Operation(summary = "from database at index {index}, select from table table.{table}  the value in multiple columns {columns}(comma separated) in the row in position offset {offset}, select {max} rows, if offset does not exist then it returns nothing")
@@ -524,7 +524,7 @@ public class RelationalRestIndex {
             return new RestError(ResponseCode.BAD_REQUEST);
         }
 
-        return new RelationalReturn<ArrayList<HashMap<String, String>>>().setData(al);
+        return new ReturnData<ArrayList<HashMap<String, String>>>().setData(al);
     }
 
     @Operation(summary = "in the database with index {index}, insert asingle row into table table")
