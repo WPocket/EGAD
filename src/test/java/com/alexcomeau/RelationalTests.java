@@ -57,7 +57,7 @@ public class RelationalTests {
         db.setUrl("test1234");
         db.setSupplier("mysql");
         Main.relational.add(rf.parseDB(db));
-        String json = "[{\"key\":\"test\", \"value\":\"value\"}]";
+        String json = "{\"test\":\"value\"}";
         this.mockMvc.perform(MockMvcRequestBuilders.post("http://127.0.0.1:8080/rel/insertOne/test")
             .content(json)
             .contentType(MediaType.APPLICATION_JSON)
@@ -73,40 +73,30 @@ public class RelationalTests {
         db.setUrl("test1234");
         db.setSupplier("mysql");
         Main.relational.add(rf.parseDB(db));
-        /*
+       /*
         [
             [
                 {
-                    "key":"test",
-                    "value":"testValue"
+                    "test1":"testValue",
+                    "test2":"testValue"
                 },
                 {
-                    "key":"test2",
-                    "value":"testValue"
-                }
-            ],
-            [
-                {
-                    "key":"test",
-                    "value":"testValue"
-                },
-                {
-                    "key":"test2",
-                    "value":"testValue"
+                    "test1":"testValue",
+                    "test2":"testValue"
                 }
             ]
         ]
         */
         String json = ""+
             "[" + 
-                "["+
-                    "{\"key\":\"test\",\"value\":\"testValue\"},"+
-                    "{\"key\":\"test2\",\"value\":\"testValue\"}" +
-                "],"+
-                "["+
-                    "{\"key\":\"test\",\"value\":\"testValue\"},"+
-                    "{\"key\":\"test2\",\"value\":\"testValue\"}" +
-                "]"+
+                    "{"+
+                        "\"test\":\"testValue\","+
+                        "\"test2\":\"testValue\"" +
+                    "}," +
+                    "{"+
+                        "\"test\":\"testValue\","+
+                        "\"test2\":\"testValue\"" +
+                    "}" +
             "]";
 
 

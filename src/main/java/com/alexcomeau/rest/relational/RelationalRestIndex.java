@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.alexcomeau.Main;
 import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.rest.RestError;
-import com.alexcomeau.rest.datatypes.ListPair;
 import com.alexcomeau.rest.datatypes.ListString;
 import com.alexcomeau.rest.datatypes.ListTable;
 import com.alexcomeau.rest.datatypes.ReturnData;
 import com.alexcomeau.rest.datatypes.StringData;
 import com.alexcomeau.rest.datatypes.Table;
-import com.alexcomeau.rest.relational.objects.EntryPair;
 import com.alexcomeau.utils.Common;
 import com.alexcomeau.utils.ResponseCode;
 
@@ -532,15 +530,13 @@ public class RelationalRestIndex {
             @ApiResponse(responseCode = "200", description = "row inserted successfully"),
             @ApiResponse(responseCode = "304", description = "bad request", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = RestError.class)) }) })
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = ListPair.class)) })
     @PostMapping("/insertOne/{table}")
-    public Serializable insertOne(@RequestBody EntryPair[] data,
+    public Serializable insertOne(@RequestBody HashMap<String, String> data,
             @Parameter(description = "the index of the database to make a request to") @PathVariable Integer index,
             @Parameter(description = "sql table name", required = true) @PathVariable String table,
             HttpServletResponse response) {
 
-        ArrayList<Pair<String, String>> pairlist = Common.hashmapToPairList(Common.entryPairToHashMap(data));
+        ArrayList<Pair<String, String>> pairlist = Common.hashmapToPairList(data);
 
         try {
             Main.relational.get(index).insert(table, pairlist);
@@ -551,22 +547,19 @@ public class RelationalRestIndex {
 
         return new RestError(ResponseCode.OK);
     }
-
     @Operation(summary = "in the database with index {index}, insert asingle row into table table")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "rows inserted successfully"),
             @ApiResponse(responseCode = "304", description = "bad request", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = RestError.class)) }) })
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = Table.class)) })
     @PostMapping("/insertMany/{table}")
-    public Serializable insertMany(@RequestBody EntryPair[][] data,
+    public Serializable insertMany(@RequestBody ArrayList<HashMap<String, String>> data,
             @Parameter(description = "the index of the database to make a request to") @PathVariable Integer index,
             @Parameter(description = "sql table name", required = true) @PathVariable String table,
             HttpServletResponse response) {
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
-        for (EntryPair[] p : data) {
-            dataList.add(Common.entryPairToHashMap(p));
+        for (HashMap<String, String> h : data) {
+            dataList.add(h);
         }
 
         try {

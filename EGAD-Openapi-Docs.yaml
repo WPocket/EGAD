@@ -31,7 +31,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ListPair'
+              type: object
+              additionalProperties:
+                type: string
         required: true
       responses:
         "200":
@@ -71,7 +73,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Table'
+              type: array
+              items:
+                type: object
+                additionalProperties:
+                  type: string
         required: true
       responses:
         "304":
@@ -103,7 +109,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ListPair'
+              type: object
+              additionalProperties:
+                type: string
         required: true
       responses:
         "200":
@@ -111,7 +119,7 @@ paths:
           content:
             '*/*':
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
         "304":
           description: bad request
           content:
@@ -135,7 +143,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ListTable'
+              type: array
+              items:
+                type: object
+                additionalProperties:
+                  type: string
         required: true
       responses:
         "304":
@@ -149,7 +161,7 @@ paths:
           content:
             '*/*':
               schema:
-                type: object
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/{max}/table.{table}/columns.{columns}:
     get:
       tags:
@@ -1174,18 +1186,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/List2D'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/column.{column}/where.{where}:
     get:
       tags:
@@ -1219,18 +1231,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/List2D'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/column.{column}/offset.{offset}:
     get:
       tags:
@@ -1265,18 +1277,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/List2D'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/column.{column}/offset.{offset}/where.{where}:
     get:
       tags:
@@ -1317,18 +1329,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/List2D'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}:
     get:
       tags:
@@ -1807,18 +1819,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: executed successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LongData'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/incr/key.{key}:
     get:
       tags:
@@ -1844,18 +1856,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: executed successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LongData'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /kv/{index}/getMul/key.{key}:
     get:
       tags:
@@ -1877,18 +1889,18 @@ paths:
           items:
             type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Table'
         "404":
           description: not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
         "304":
           description: nothing changed
           content:
@@ -2033,14 +2045,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: executed successfully
+        "304":
+          description: nothing changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "304":
-          description: nothing changed
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2079,14 +2091,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: executed successfully
+        "304":
+          description: nothing changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "304":
-          description: nothing changed
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2104,18 +2116,18 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListString'
         "404":
           description: not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListString'
         "304":
           description: nothing changed
           content:
@@ -2288,18 +2300,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListTable'
         "304":
           description: nothing changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTable'
   /kv/get/key.{key}:
     get:
       tags:
@@ -2313,18 +2325,18 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListString'
         "404":
           description: not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListString'
         "400":
           description: bad request
           content:
@@ -2417,14 +2429,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: executed successfully
+        "304":
+          description: nothing changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "304":
-          description: nothing changed
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2458,14 +2470,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: executed successfully
+        "304":
+          description: nothing changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "304":
-          description: nothing changed
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2491,24 +2503,6 @@ paths:
                 $ref: '#/components/schemas/Greeting'
 components:
   schemas:
-    ListPair:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PairStringString'
-    PairStringString:
-      type: object
-      properties:
-        value:
-          type: string
-        key:
-          type: string
-        left:
-          type: string
-        right:
-          type: string
     Error:
       type: object
       properties:
@@ -2543,13 +2537,6 @@ components:
           - NOT_FOUND
           - TOO_MANY_REQUESTS
           - SERVICE_UNAVAILABLE
-    Table:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties:
-            type: string
     ListTable:
       type: object
       properties:
@@ -2565,6 +2552,13 @@ components:
         data:
           type: array
           items:
+            type: string
+    Table:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
             type: string
     StringData:
       type: object

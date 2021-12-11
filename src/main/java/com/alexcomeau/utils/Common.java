@@ -3,8 +3,6 @@ package com.alexcomeau.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.alexcomeau.rest.relational.objects.EntryPair;
-
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -18,16 +16,5 @@ public class Common {
         return output;
     }
 
-    public static HashMap<String, String> entryPairToHashMap(EntryPair[] data){
-        HashMap<String, String> output = new HashMap<>();
-        if(data.length == 0){
-            return output;
-        }
-        for(EntryPair pair : data){
-            output.put(pair.getKey(), pair.getValue());
-        }
-
-        return output;
-    }
 
 }

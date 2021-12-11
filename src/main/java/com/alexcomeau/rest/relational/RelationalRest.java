@@ -12,11 +12,9 @@ import com.alexcomeau.database.relational.Relational;
 import com.alexcomeau.rest.RestError;
 import com.alexcomeau.rest.datatypes.List2D;
 import com.alexcomeau.rest.datatypes.List2DTable;
-import com.alexcomeau.rest.datatypes.ListPair;
 import com.alexcomeau.rest.datatypes.ListString;
 import com.alexcomeau.rest.datatypes.ListTable;
 import com.alexcomeau.rest.datatypes.ReturnData;
-import com.alexcomeau.rest.relational.objects.EntryPair;
 import com.alexcomeau.utils.Common;
 import com.alexcomeau.utils.ResponseCode;
 
@@ -520,13 +518,12 @@ public class RelationalRest {
         @ApiResponse(responseCode = "200", description = "row inserted successfully"),
         @ApiResponse(responseCode = "304", description = "bad request", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = RestError.class)) }) })
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ListPair.class))})
     @PostMapping("/insertOne/{table}")
-    public Serializable insertOne(@RequestBody EntryPair[] data,
+    public RestError insertOne(@RequestBody HashMap<String, String> data,
             @Parameter(description = "sql table name", required = true) @PathVariable String table,
             HttpServletResponse response) {
                 
-        ArrayList<Pair<String, String>> pairlist = Common.hashmapToPairList(Common.entryPairToHashMap(data));
+        ArrayList<Pair<String, String>> pairlist = Common.hashmapToPairList(data);
         for (Relational rel : Main.relational) {
             try {
                 rel.insert(table, pairlist);
@@ -542,14 +539,13 @@ public class RelationalRest {
         @ApiResponse(responseCode = "200", description = "rows inserted successfully"),
         @ApiResponse(responseCode = "304", description = "bad request", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = RestError.class)) }) })
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ListTable.class))})
     @PostMapping("/insertMany/{table}")
-    public Serializable insertMany(@RequestBody EntryPair[][] data,
+    public RestError insertMany(@RequestBody ArrayList<HashMap<String, String>> data,
             @Parameter(description = "sql table name", required = true) @PathVariable String table,
             HttpServletResponse response) {
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
-        for (EntryPair[] p : data) {
-            dataList.add(Common.entryPairToHashMap(p));
+        for (HashMap<String, String> h : data) {
+            dataList.add(h);
         }
         for (Relational rel : Main.relational) {
             try {
