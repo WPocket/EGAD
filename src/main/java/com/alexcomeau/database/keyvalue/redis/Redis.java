@@ -54,7 +54,7 @@ public class Redis implements KeyValue{
             jedis.connect();
             out = jedis.get(key);
             if(out == null){
-                return "";
+                throw new DatabaseException("20", "value does not exist");
             }
             if(out.equals("nil")){
                 throw new DatabaseException("20", "value does not exist");

@@ -34,7 +34,7 @@ public class KeyValueTests {
         db.setSupplier("redis");
         Main.kv.add(kv.parseDB(db));
     
-		this.mockMvc.perform(get("/kv/get/key.test")).andDo(print()).andExpect(status().isBadRequest());
+		this.mockMvc.perform(get("/kv/get/key.totallyunrealistictest")).andDo(print()).andExpect(status().isBadRequest());
 	}
 
     @Test
