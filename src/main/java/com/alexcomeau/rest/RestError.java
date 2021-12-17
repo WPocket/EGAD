@@ -12,9 +12,12 @@ public class RestError implements Serializable{
     public int code = 00;
     @JsonProperty
     ResponseCode rc;
-    public RestError(ResponseCode rc){
+    @JsonProperty
+    public String message;
+    public RestError(ResponseCode rc, String message){
         this.code = rc.code;
         this.rc = rc;
+        this.message = message;
     }
 
     public ResponseCode getResponseCode(){

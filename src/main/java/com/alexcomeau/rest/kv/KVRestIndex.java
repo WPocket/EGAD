@@ -51,10 +51,13 @@ public class KVRestIndex {
             res = kv.get(key);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
         return new ReturnData<String>().setData(res);
     }
@@ -75,12 +78,15 @@ public class KVRestIndex {
             kv.set(key, value);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
 
     @Operation(summary = "Set key {key} to timeout after a given number of seconds {t}")
@@ -100,12 +106,15 @@ public class KVRestIndex {
             kv.setKeyExpire(key, t);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
 
     @Operation(summary = "Set key {key} to hold the string value {value} and set key to timeout after a given number of seconds {t}")
@@ -125,12 +134,15 @@ public class KVRestIndex {
             kv.setWExpire(key, value, t);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
 
     }
 
@@ -150,10 +162,13 @@ public class KVRestIndex {
             res = kv.exists(key);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
         return new ReturnData<Boolean>().setData(res);
     }
@@ -174,10 +189,13 @@ public class KVRestIndex {
             res = kv.incr(key);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
         return new ReturnData<Long>().setData(res);
     }
@@ -199,10 +217,13 @@ public class KVRestIndex {
             res = kv.incrBy(key, Long.parseLong(incr));
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
         return new ReturnData<Long>().setData(res);
     }
@@ -222,12 +243,15 @@ public class KVRestIndex {
             kv.delete(key);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
 
     @Operation(summary = "add multiple keys {key} (comma separated list) with values {value} (comma separated list) to database in position {index}")
@@ -244,8 +268,7 @@ public class KVRestIndex {
         // construct a hashmap
         if (key.length != value.length) {
             response.setStatus(ResponseCode.NOT_MODIFIED.code);
-            response.setStatus(ResponseCode.NOT_MODIFIED.code);
-            return new RestError(ResponseCode.NOT_MODIFIED);
+            return new RestError(ResponseCode.NOT_MODIFIED, "the length of the values list is different from the length of the keys list");
         }
         HashMap<String, String> hMap = new HashMap<>();
         for (int i = 0; i < key.length; i++) {
@@ -256,12 +279,15 @@ public class KVRestIndex {
             kv.addMultiple(hMap);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
 
     @Operation(summary = "get multiple keys {key} (comma separated list) from database in index {index}")
@@ -285,10 +311,13 @@ public class KVRestIndex {
             res = kv.getMultiple(list);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
         return new ReturnData<HashMap<String, String>>().setData(res);
     }
@@ -310,10 +339,13 @@ public class KVRestIndex {
             res = kv.getType(key);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
+        } catch (NumberFormatException e1) {
+            response.setStatus(ResponseCode.BAD_REQUEST.code);
+            return new RestError(ResponseCode.BAD_REQUEST, "unexpected integer value");
+        } catch (IndexOutOfBoundsException e2){
             response.setStatus(ResponseCode.NOT_FOUND.code);
-            return new RestError(ResponseCode.NOT_FOUND);
+            return new RestError(ResponseCode.NOT_FOUND, "database at index " + index + " does not exist");
         }
         return new ReturnData<String>().setData(res);
     }

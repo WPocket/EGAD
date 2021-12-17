@@ -51,7 +51,7 @@ public class KVRest {
                 res.add(kv.get(key));
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.BAD_REQUEST.code);
-                return new RestError(ResponseCode.BAD_REQUEST);
+                return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
             }
         }
         return new ReturnData<ArrayList<String>>().setData(res);
@@ -71,10 +71,10 @@ public class KVRest {
                 kv.set(key, value);
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.BAD_REQUEST.code);
-                return new RestError(ResponseCode.BAD_REQUEST);
+                return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
             }
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
 
     @Operation(summary = "set key {key} to expire after time {t} seconds in every database")
@@ -94,12 +94,12 @@ public class KVRest {
             }
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.NOT_MODIFIED.code);
-            return new RestError(ResponseCode.NOT_MODIFIED);
+            return new RestError(ResponseCode.NOT_MODIFIED, "unexpected non-integer value");
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
 
     @Operation(summary = "Set key {key} to hold the string value {value} and set key to timeout after a given number of seconds {t} in every database")
@@ -120,12 +120,12 @@ public class KVRest {
             }
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.NOT_MODIFIED.code);
-            return new RestError(ResponseCode.NOT_MODIFIED);
+            return new RestError(ResponseCode.NOT_MODIFIED, "unexpected non-integer value");
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
 
     }
 
@@ -145,7 +145,7 @@ public class KVRest {
                 res.add(kv.exists(key));
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.BAD_REQUEST.code);
-                return new RestError(ResponseCode.BAD_REQUEST);
+                return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
             }
         }
         return new ReturnData<ArrayList<Boolean>>().setData(res);
@@ -167,7 +167,7 @@ public class KVRest {
                 res.add(kv.incr(key));
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.NOT_MODIFIED.code);
-                return new RestError(ResponseCode.NOT_MODIFIED);
+                return new RestError(ResponseCode.NOT_MODIFIED, "unexpected non-integer value");
             }
         }
         return new ReturnData<ArrayList<Long>>().setData(res);
@@ -189,10 +189,10 @@ public class KVRest {
                 res.add(kv.incrBy(key, Long.parseLong(incr)));
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.BAD_REQUEST.code);
-                return new RestError(ResponseCode.BAD_REQUEST);
+                return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
             } catch (NumberFormatException e) {
                 response.setStatus(ResponseCode.NOT_MODIFIED.code);
-                return new RestError(ResponseCode.NOT_MODIFIED);
+                return new RestError(ResponseCode.NOT_MODIFIED, "unexpected non-integer value");
             }
         }
         return new ReturnData<ArrayList<Long>>().setData(res);
@@ -213,10 +213,10 @@ public class KVRest {
                 kv.delete(key);
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.NOT_MODIFIED.code);
-                return new RestError(ResponseCode.NOT_MODIFIED);
+                return new RestError(ResponseCode.NOT_MODIFIED, "unexpected non-integer value");
             }
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
 
     @Operation(summary = "add multiple keys {key} (comma separated list) with values {value} (comma separated list) to all databases")
@@ -232,7 +232,7 @@ public class KVRest {
         // construct a hashmap
         if (key.length != value.length) {
             response.setStatus(ResponseCode.NOT_MODIFIED.code);
-            return new RestError(ResponseCode.NOT_MODIFIED);
+            return new RestError(ResponseCode.NOT_MODIFIED, "unexpected non-integer value");
         }
         HashMap<String, String> hMap = new HashMap<>();
         for (int i = 0; i < key.length; i++) {
@@ -244,10 +244,10 @@ public class KVRest {
                 kv.addMultiple(hMap);
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.BAD_REQUEST.code);
-                return new RestError(ResponseCode.BAD_REQUEST);
+                return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
             }
         }
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
     @Operation(summary = "get multiple keys {key} (comma separated list) from all databases")
     @ApiResponses(value = {
@@ -269,7 +269,7 @@ public class KVRest {
                 res.add(kv.getMultiple(list));
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.BAD_REQUEST.code);
-                return new RestError(ResponseCode.BAD_REQUEST);
+                return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
             }
         }
         return new ReturnData<ArrayList<HashMap<String, String>>>().setData(res);
@@ -292,7 +292,7 @@ public class KVRest {
                 res.add(kv.getType(key));
             } catch (DatabaseException e) {
                 response.setStatus(ResponseCode.BAD_REQUEST.code);
-                return new RestError(ResponseCode.BAD_REQUEST);
+                return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
             }
         }
         return new ReturnData<ArrayList<String>>().setData(res);

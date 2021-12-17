@@ -58,7 +58,7 @@ public class RelationalRestIndex {
 
             response.setStatus(ResponseCode.BAD_REQUEST.code);
 
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
         return new ReturnData<String>().setData(res);
     }
@@ -83,7 +83,7 @@ public class RelationalRestIndex {
 
             response.setStatus(ResponseCode.BAD_REQUEST.code);
 
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
         return new ReturnData<String>().setData(res);
     }
@@ -106,12 +106,12 @@ public class RelationalRestIndex {
             res = Main.relational.get(index).selectOffset(column, table, Integer.parseInt(offset));
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
 
             response.setStatus(ResponseCode.BAD_REQUEST.code);
 
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
         return new ReturnData<String>().setData(res);
     }
@@ -135,12 +135,12 @@ public class RelationalRestIndex {
             res = Main.relational.get(index).selectWhereOffset(column, table, where, Integer.parseInt(offset));
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
 
             response.setStatus(ResponseCode.BAD_REQUEST.code);
 
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
         return new ReturnData<String>().setData(res);
     }
@@ -170,10 +170,10 @@ public class RelationalRestIndex {
             hmap = Main.relational.get(index).selectMultiple(columnAList, table);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<HashMap<String, String>>().setData(hmap);
@@ -201,10 +201,10 @@ public class RelationalRestIndex {
             hmap = Main.relational.get(index).selectMultipleWhere(columnAList, table, where);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
         return new ReturnData<HashMap<String, String>>().setData(hmap);
     }
@@ -233,10 +233,10 @@ public class RelationalRestIndex {
                     Integer.parseInt(offset));
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
         return new ReturnData<HashMap<String, String>>().setData(hmap);
     }
@@ -263,10 +263,10 @@ public class RelationalRestIndex {
             hmap = Main.relational.get(index).selectMultipleOffset(columnAList, table, Integer.parseInt(offset));
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
         return new ReturnData<HashMap<String, String>>().setData(hmap);
     }
@@ -296,10 +296,10 @@ public class RelationalRestIndex {
             Main.relational.get(index).selectMax(column, table, maxI);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<ArrayList<String>>().setData(al);
@@ -325,10 +325,10 @@ public class RelationalRestIndex {
             Main.relational.get(index).selectWhereMax(column, table, where, maxI);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<ArrayList<String>>().setData(al);
@@ -354,10 +354,10 @@ public class RelationalRestIndex {
             Main.relational.get(index).selectOffsetMax(column, table, Integer.parseInt(offset), maxI);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<ArrayList<String>>().setData(al);
@@ -384,10 +384,10 @@ public class RelationalRestIndex {
             Main.relational.get(index).selectWhereOffsetMax(column, table, where, Integer.parseInt(offset), maxI);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<ArrayList<String>>().setData(al);
@@ -417,10 +417,10 @@ public class RelationalRestIndex {
             al = Main.relational.get(index).selectMultipleMax(columnAList, table, maxI);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<ArrayList<HashMap<String, String>>>().setData(al);
@@ -451,10 +451,10 @@ public class RelationalRestIndex {
             al = Main.relational.get(index).selectMultipleWhereMax(columnAList, table, where, maxI);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<ArrayList<HashMap<String, String>>>().setData(al);
@@ -482,10 +482,10 @@ public class RelationalRestIndex {
                     Integer.parseInt(offset), maxI);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<ArrayList<HashMap<String, String>>>().setData(al);
@@ -516,10 +516,10 @@ public class RelationalRestIndex {
             al = Main.relational.get(index).selectMultipleOffsetMax(columnAList, table, Integer.parseInt(offset), maxI);
         } catch (NumberFormatException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.BAD_REQUEST.code);
-            return new RestError(ResponseCode.BAD_REQUEST);
+            return new RestError(ResponseCode.BAD_REQUEST, e.getMessage());
         }
 
         return new ReturnData<ArrayList<HashMap<String, String>>>().setData(al);
@@ -542,10 +542,10 @@ public class RelationalRestIndex {
             Main.relational.get(index).insert(table, pairlist);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.NOT_MODIFIED.code);
-            return new RestError(ResponseCode.NOT_MODIFIED);
+            return new RestError(ResponseCode.NOT_MODIFIED, "OK");
         }
 
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
     @Operation(summary = "in the database with index {index}, insert asingle row into table table")
     @ApiResponses(value = {
@@ -566,9 +566,9 @@ public class RelationalRestIndex {
             Main.relational.get(index).insertMany(table, dataList);
         } catch (DatabaseException e) {
             response.setStatus(ResponseCode.NOT_MODIFIED.code);
-            return new RestError(ResponseCode.NOT_MODIFIED);
+            return new RestError(ResponseCode.NOT_MODIFIED, e.getMessage());
         }
 
-        return new RestError(ResponseCode.OK);
+        return new RestError(ResponseCode.OK, "OK");
     }
 }
