@@ -199,18 +199,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/{max}/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
@@ -254,18 +254,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/{max}/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
@@ -310,18 +310,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/{max}/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
@@ -814,18 +814,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StringData'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/table.{table}/column.{column}/where.{where}:
     get:
       tags:
@@ -860,18 +860,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StringData'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/table.{table}/column.{column}/offset.{offset}:
     get:
       tags:
@@ -907,18 +907,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StringData'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/{index}/select/table.{table}/column.{column}/offset.{offset}/where.{where}:
     get:
       tags:
@@ -961,18 +961,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StringData'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/{max}/table.{table}/columns.{columns}:
     get:
       tags:
@@ -1364,18 +1364,18 @@ paths:
           items:
             type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/where.{where}:
     get:
       tags:
@@ -1405,18 +1405,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/offset.{offset}:
     get:
       tags:
@@ -1447,18 +1447,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/columns.{columns}/offset.{offset}/where.{where}:
     get:
       tags:
@@ -1495,18 +1495,18 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: "table, value, and row exist"
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListTable'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /rel/select/table.{table}/column.{column}:
     get:
       tags:
@@ -1689,18 +1689,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StringData'
         "304":
           description: nothing changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringData'
   /kv/{index}/setex/key.{key}/value.{value}/t.{time}:
     get:
       tags:
@@ -1730,8 +1730,8 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
+        "404":
+          description: not found
           content:
             application/json:
               schema:
@@ -1742,8 +1742,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "404":
-          description: not found
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -1771,8 +1771,8 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
+        "404":
+          description: not found
           content:
             application/json:
               schema:
@@ -1783,8 +1783,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "404":
-          description: not found
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -1813,6 +1813,12 @@ paths:
         schema:
           type: string
       responses:
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         "400":
           description: bad request
           content:
@@ -1825,12 +1831,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LongData'
-        "404":
-          description: not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /kv/{index}/incr/key.{key}:
     get:
       tags:
@@ -1850,6 +1850,12 @@ paths:
         schema:
           type: string
       responses:
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         "400":
           description: bad request
           content:
@@ -1862,12 +1868,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LongData'
-        "404":
-          description: not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /kv/{index}/getMul/key.{key}:
     get:
       tags:
@@ -1889,18 +1889,18 @@ paths:
           items:
             type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Table'
         "404":
           description: not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Table'
         "304":
           description: nothing changed
           content:
@@ -1925,14 +1925,14 @@ paths:
         schema:
           type: string
       responses:
-        "400":
-          description: bad request
+        "404":
+          description: not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "404":
-          description: not found
+        "400":
+          description: bad request
           content:
             application/json:
               schema:
@@ -1966,8 +1966,8 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
+        "404":
+          description: not found
           content:
             application/json:
               schema:
@@ -1978,8 +1978,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "404":
-          description: not found
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2003,6 +2003,12 @@ paths:
         schema:
           type: string
       responses:
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         "400":
           description: bad request
           content:
@@ -2015,12 +2021,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BoolData'
-        "404":
-          description: not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /kv/{index}/del/key.{key}:
     get:
       tags:
@@ -2039,12 +2039,6 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "404":
           description: not found
           content:
@@ -2053,6 +2047,12 @@ paths:
                 $ref: '#/components/schemas/Error'
         "304":
           description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2085,12 +2085,6 @@ paths:
           items:
             type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "404":
           description: not found
           content:
@@ -2099,6 +2093,12 @@ paths:
                 $ref: '#/components/schemas/Error'
         "304":
           description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2116,18 +2116,18 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListString'
         "404":
           description: not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListString'
         "304":
           description: nothing changed
           content:
@@ -2158,8 +2158,8 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
+        "404":
+          description: not found
           content:
             application/json:
               schema:
@@ -2170,8 +2170,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "404":
-          description: not found
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2194,8 +2194,8 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
+        "404":
+          description: not found
           content:
             application/json:
               schema:
@@ -2206,8 +2206,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "404":
-          description: not found
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2236,18 +2236,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListLong'
         "304":
           description: nothing changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLong'
   /kv/incr/key.{key}:
     get:
       tags:
@@ -2267,18 +2267,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListLong'
         "304":
           description: nothing changed
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListLong'
   /kv/getMul/key.{key}:
     get:
       tags:
@@ -2325,6 +2325,12 @@ paths:
         schema:
           type: string
       responses:
+        "404":
+          description: not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         "200":
           description: executed successfully
           content:
@@ -2333,12 +2339,6 @@ paths:
                 $ref: '#/components/schemas/ListString'
         "400":
           description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        "404":
-          description: not found
           content:
             application/json:
               schema:
@@ -2361,8 +2361,8 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
+        "404":
+          description: not found
           content:
             application/json:
               schema:
@@ -2373,8 +2373,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "404":
-          description: not found
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2392,24 +2392,24 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListBool'
-        "400":
-          description: bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "404":
           description: not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "400":
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBool'
   /kv/del/key.{key}:
     get:
       tags:
@@ -2423,12 +2423,6 @@ paths:
         schema:
           type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "404":
           description: not found
           content:
@@ -2437,6 +2431,12 @@ paths:
                 $ref: '#/components/schemas/Error'
         "304":
           description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:
@@ -2464,12 +2464,6 @@ paths:
           items:
             type: string
       responses:
-        "200":
-          description: executed successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "404":
           description: not found
           content:
@@ -2478,6 +2472,12 @@ paths:
                 $ref: '#/components/schemas/Error'
         "304":
           description: nothing changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "200":
+          description: executed successfully
           content:
             application/json:
               schema:

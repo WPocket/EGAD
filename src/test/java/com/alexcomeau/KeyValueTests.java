@@ -6,8 +6,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 
+import com.alexcomeau.config.Database;
+import com.alexcomeau.database.keyvalue.KVFactory;
 import com.alexcomeau.database.keyvalue.KeyValue;
-import com.alexcomeau.database.keyvalue.redis.Redis;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +28,11 @@ public class KeyValueTests {
 	@Test
 	public void KeyValueSelect() throws Exception {
         Main.kv = new ArrayList<KeyValue>();
-        Main.kv.add(new Redis(null));
+        KVFactory kv = new KVFactory();
+        Database db = new Database();
+        db.setUrl("test1234");
+        db.setSupplier("redis");
+        Main.kv.add(kv.parseDB(db));
     
 		this.mockMvc.perform(get("/kv/get/key.test")).andDo(print()).andExpect(status().isBadRequest());
 	}
@@ -35,7 +40,12 @@ public class KeyValueTests {
     @Test
 	public void KeyValueSelectIndex() throws Exception {
         Main.kv = new ArrayList<KeyValue>();
-        Main.kv.add(new Redis(null));
+        KVFactory kv = new KVFactory();
+        Database db = new Database();
+        db.setUrl("test1234");
+        db.setSupplier("redis");
+        Main.kv.add(kv.parseDB(db));
+    
 
 		this.mockMvc.perform(get("/kv/0/get/key.test")).andDo(print()).andExpect(status().isBadRequest());
 	}

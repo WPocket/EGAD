@@ -9,6 +9,7 @@ import com.alexcomeau.database.DatabaseException;
 import com.alexcomeau.database.keyvalue.KeyValue;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.exceptions.InvalidURIException;
 
 public class Redis implements KeyValue{
     private Jedis jedis;
@@ -18,7 +19,12 @@ public class Redis implements KeyValue{
             jedis = new Jedis();
             return;
         }
-        jedis = new Jedis(URI.create(db.getUrl()));
+        try{
+            jedis = new Jedis(URI.create(db.getUrl()));
+        }catch(InvalidURIException e){
+            jedis = new Jedis();
+            return;
+        }
     }
 
     @Override
