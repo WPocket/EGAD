@@ -5,8 +5,9 @@ public class Config {
     private Database[] keyValue;
     private int port;
     private String passwordSha256;
-    private int defaultRelationalIndex;
-    private int defaultKeyValueIndex;
+    private String passwordPlaintext;
+
+   
 
     public Database[] getRelational() {
         return this.relational;
@@ -40,20 +41,12 @@ public class Config {
         this.passwordSha256 = passwordSha256;
     }
 
-    public int getDefaultRelationalIndex() {
-        return this.defaultRelationalIndex;
+    public String getPasswordPlaintext() {
+        return this.passwordPlaintext;
     }
 
-    public void setDefaultRelationalIndex(int defaultRelationalIndex) {
-        this.defaultRelationalIndex = defaultRelationalIndex;
-    }
-
-    public int getDefaultKeyValueIndex() {
-        return this.defaultKeyValueIndex;
-    }
-
-    public void setDefaultKeyValueIndex(int defaultKeyValueIndex) {
-        this.defaultKeyValueIndex = defaultKeyValueIndex;
+    public void setPasswordPlaintext(String passwordPlaintext) {
+        this.passwordPlaintext = passwordPlaintext;
     }
 
 }

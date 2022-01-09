@@ -23,8 +23,7 @@
             "use":""
         }
     ],
-    "port":8080,
-    "passwordSha256":"",
-    "defaultRelationalIndex":-1,
-    "defaultKeyValueIndex":0
+    "port":3360,
+    "passwordPlaintext":"pass",
+    "passwordSha256":""
 }
